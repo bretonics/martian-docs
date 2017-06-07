@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Getting-starteds on Martian</title>
-    <link>https://example.org/getting-started/</link>
+    <link>https://martian-lang.github.io/getting-started/</link>
     <description>Recent content in Getting-starteds on Martian</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Sun, 21 May 2017 17:53:15 -0700</lastBuildDate>
     
-	<atom:link href="https://example.org/getting-started/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://martian-lang.github.io/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Getting Started</title>
-      <link>https://example.org/getting-started/</link>
+      <link>https://martian-lang.github.io/getting-started/</link>
       <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
       
-      <guid>https://example.org/getting-started/</guid>
+      <guid>https://martian-lang.github.io/getting-started/</guid>
       <description>go for it</description>
     </item>
     
