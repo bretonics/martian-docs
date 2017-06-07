@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+  
+  
+  
+  
+   <html class="no-js"> 
+
+  <head lang="en-us">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <title>Writing Pipelines - Martian</title>
+    <meta name="generator" content="Hugo 0.20.7" />
+
+    
+    <meta name="description" content="A material design theme for documentations.">
+    
+    <link rel="canonical" href="https://example.org/concepts/">
+    
+    <meta name="author" content="Digitalcraftsman">
+    
+
+    <meta property="og:url" content="https://example.org/concepts/">
+    <meta property="og:title" content="Martian">
+    <meta property="og:image" content="https://example.org/images/logo.png">
+    <meta name="apple-mobile-web-app-title" content="Martian">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="https://example.org/images/favicon.ico">
+
+    <style>
+      @font-face {
+        font-family: 'Icon';
+        src: url('https://example.org/fonts/icon.eot');
+        src: url('https://example.org/fonts/icon.eot')
+               format('embedded-opentype'),
+             url('https://example.org/fonts/icon.woff')
+               format('woff'),
+             url('https://example.org/fonts/icon.ttf')
+               format('truetype'),
+             url('https://example.org/fonts/icon.svg')
+               format('svg');
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://example.org/stylesheets/application.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/temporary.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/palettes.css">
+    <link rel="stylesheet" href="https://example.org/stylesheets/highlight/highlight.css">
+
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" href="https://example.org/martian.css">
+    
+    <script src="https://example.org/javascripts/modernizr.js"></script>
+
+    
+
+  </head>
+  <body class="palette-primary-red palette-accent-black">
+
+
+
+	
+	
+
+
+<div class="backdrop">
+	<div class="backdrop-paper"></div>
+</div>
+
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+
+<header class="header">
+	<nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        Martian
+      </div>
+    </div>
+
+    
+
+    
+    <div class="button button-github" role="button" aria-label="GitHub">
+      <a href="https://github.com/martian-lang" title="@martian-lang on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+    </div>
+    
+    
+        
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+
+</header>
+
+<main class="main">
+	<div class="drawer">
+		<nav aria-label="Navigation">
+  
+
+  <div class="scrollable">
+    <div class="wrapper">
+      
+        
+      
+
+      <div class="toc">
+        
+        <ul>
+          
+
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="What is Martian?" href="https://example.org/">
+	
+	What is Martian?
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Getting Started" href="https://example.org/getting-started/">
+	
+	Getting Started
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a class="current" title="Writing Pipelines" href="https://example.org/concepts/">
+	
+	Writing Pipelines
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Compiling" href="https://example.org/compiling/">
+	
+	Compiling
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Running Pipelines" href="https://example.org/language/">
+	
+	Running Pipelines
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Organizing Code" href="https://example.org/organizing-code/">
+	
+	Organizing Code
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Writing Stages" href="https://example.org/writing-stages/">
+	
+	Writing Stages
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Runtime" href="https://example.org/runtime/">
+	
+	Runtime
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Metadata &amp; Provenance" href="https://example.org/metadata-provenance/">
+	
+	Metadata &amp; Provenance
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="Resource Management" href="https://example.org/resource-management/">
+	
+	Resource Management
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="About" href="https://example.org/about/">
+	
+	About
+</a>
+
+
+
+  
+</li>
+
+
+        </ul>
+        
+
+        
+        
+        
+        
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+	</div>
+
+	<article class="article">
+		<div class="wrapper">
+			<h1>Writing Pipelines </h1>
+
+			
+
+<h2 id="stages">Stages</h2>
+
+<p>A stage is the fundamental unit of computation in Martian, and is composed with other stages into Martian pipelines, which are directed, acyclic graphs of stages.</p>
+
+<p>Martian stages can be implemented in any language, and each stage can even be implemented in a different language, if desired. Martian manages the flow of data from the outputs of one stage to the inputs of one or more downstream stages in the graph. Martian provides a well-structured, typed, validated, JSON-based mechanism to facilitate data exchange between stages in a language-independent manner.</p>
+
+<p>Here is a basic stage definition example:</p>
+
+<pre><code>filetype txt;
+
+stage SORT(
+    in  txt  unsorted,
+    in  bool case_sensitive,
+    out txt  sorted,
+    src py   &quot;stages/sort&quot;,
+)
+</code></pre>
+
+<p>A stage is minimally defined by three things:</p>
+
+<ol>
+<li><strong>Input Parameters -</strong> A stage can declare one or more typed <code>in</code> parameters, to which upstream stages&rsquo; outputs are bound. At runtime, Martian passes type-checked arguments into the stage code.</li>
+<li><strong>Output Parameters -</strong> Martian also provides a structured way for stage code to return typed <code>out</code> values, which are validated and passed by Martian to downstream stages.</li>
+<li><strong>Stage Code -</strong> The <code>src</code> parameter references the executable code that implements the functionality of the stage. The type of this parameter indicates the language of that code. For example, a stage could refer to a Python module, a C, C++, Go, or Rust binary, or a shell script, just to name a few possibilities. There is no required or preferred implementation language in Martian. The third element of this parameter is a language-dependent string that Martian uses to locate the code. In this example, <code>stages/sort</code> is a folder that exists relative to the <code>MROPATH</code> environment variable, and contains a valid Python module with a <code>__init__.py</code>.</li>
+</ol>
+
+<h2 id="pipelines">Pipelines</h2>
+
+<p>A pipeline definition comprises as series of calls to defined stages. Each stage call must bind its inputs to either the outputs of another upstream stage, or to the input parameters of the pipeline itself. Here is a simple example:</p>
+
+<pre><code>filetype txt;
+
+stage SORT_ITEMS(
+    in  txt  unsorted,
+    in  bool case_sensitive,
+    out txt  sorted,
+    src py   &quot;stages/sort&quot;,
+)
+
+stage FIND_DUPLICATES(
+    in  txt  sorted,
+    out txt  duplicates,
+    src py   &quot;stages/find_duplicates&quot;,
+)
+
+pipeline DUPLICATE_FINDER(
+    in  txt  unsorted,
+    out txt  duplicates,
+)
+{
+    call SORT_ITEMS(
+        unsorted = self.unsorted,
+    )
+    call FIND_DUPLICATES(
+        sorted = SORT.sorted,
+    )
+    return (
+        duplicates = FIND_DUPLICATES.duplicates,
+    )
+}
+</code></pre>
+
+<p>The example above does the following:</p>
+
+<ul>
+<li>Declares a user-defined filetype <code>txt</code></li>
+<li>Declares two stages <code>SORT</code> and <code>FIND_DUPLICATES</code></li>
+<li>Declares a pipeline <code>DUPLICATE_FINDER</code> that calls both stages. It accepts one input <code>unsorted</code> which must be a filename ending in <code>.txt</code> and produces one output which will be a file named <code>duplicates.txt</code>.</li>
+</ul>
+
+<h3 id="composability">Composability</h3>
+
+<p>Pipelines have the same input and output parameter interface as stages do, so they themselves may also act as stages, allowing the composition of an arbitrary mix of individual stages and pipelines into still larger pipelines. We refer to them as &ldquo;subpipelines&rdquo; when they are composed into other pipelines.</p>
+
+<p>When a pipeline is run, that particular instantiation of it is called a &ldquo;pipestance&rdquo;, which is a portmanteau of &ldquo;pipeline&rdquo; and &ldquo;instance&rdquo;.</p>
+
+<h2 id="organizing-code">Organizing Code</h2>
+
+<h3 id="mro-files">MRO Files</h3>
+
+<p>While Martian is the name of the framework, we generally refer to the stage and pipeline code as <strong>MRO code</strong>, because it is written in files that have an <code>.mro</code> extension.</p>
+
+<h3 id="preprocessing-with-include">Preprocessing with @include</h3>
+
+<p>Martian supports lexical preprocessing with an <code>@include</code> directive, which takes the path to another MRO file as an argument. This directive is evaluated by splicing the contents of the included file into the file where the directive is given, replacing the directive itself. This evaluation is recursive, and Martian keeps track of the inclusion tree in order to be able to report errors with per-file line numbers.</p>
+
+<p><code>_my_stages.mro</code></p>
+
+<pre><code>filetype txt;
+
+stage SORT_ITEMS(
+    in  txt  unsorted,
+    in  bool case_sensitive,
+    out txt  sorted,
+    src py   &quot;stages/sort&quot;,
+)
+</code></pre>
+
+<p><code>pipeline.mro</code></p>
+
+<pre><code>@include &quot;_my_stages.mro&quot;
+
+pipeline DUPLICATE_FINDER(
+    in  txt  unsorted,
+    out txt  sorted,
+)
+{
+    call SORT_ITEMS(
+        unsorted = self.unsorted,
+    )
+    return (
+        sorted = SORT_ITEMS.sorted,
+    )
+}
+</code></pre>
+
+<h3 id="stage-code-vs-pipeline-code">Stage Code vs Pipeline Code</h3>
+
+<p>By convention, the <code>@include</code> directive allows the developer to organize code into header-like files, although there is no formal distinction between header and non-header MRO files in Martian. Typically, stages that are logically grouped together are declared in one file, for example <code>_sorting_stages.mro</code>, and that file would be included into another MRO file that declares a pipeline that calls these included stages. By convention, MRO files containing stage declarations should be named with the suffix <code>_stages</code>.</p>
+
+<h2 id="symbols-and-scope">Symbols and Scope</h2>
+
+<p>Symbols in Martian may comprise uppercase and lowercase letters, numeric digits, and underscores. A symbol may not, however, begin with a numeric digit, which is reserved for number literals. The lexer regular expression for symbols is <code>[a-zA-Z_][a-zA-z0-9_]*\\b</code>.</p>
+
+<p>Martian defines two scopes within which there are symbol name uniqueness constraints:</p>
+
+<ol>
+<li>Within the scope of one pipeline invocation, which encompasses all recursively included MRO files, no two stages or pipelines may share the same name. This is considered the global scope of a pipestance.</li>
+<li>Within the scope of a stage declaration, no two input parameters of a given stage can have the same name, and same for output parameters.</li>
+</ol>
+
+<h3 id="naming-conventions">Naming Conventions</h3>
+
+<p>The following naming conventions are strongly recommended for consistency and readability, but are not currently enforced by the compiler.</p>
+
+<p>Stage and pipeline names should written in <code>ALL CAPS SNAKE_CASE</code>.</p>
+
+<ul>
+<li>Stage names should be a subject and verb: <code>FIND_DIPS</code>, <code>CALL_VARIANTS</code></li>
+<li>Pipelines names should be actor verbs: <code>COIN_SORTER</code>, <code>DYSON_SPHERE_DETECTOR</code></li>
+<li>Names of pipelines intended to serve as subpipelines should be prefixed with an underscore: <code>_METRICS_REPORTER</code></li>
+</ul>
+
+<p>Parameter names should be written in <code>all lowercase snake_case</code>.</p>
+
+<h2 id="parameter-binding">Parameter Binding</h2>
+
+<p>This section describes the rules associated with parameter binding, the mechanism by which inputs and outputs of stages and pipelines are connected together.</p>
+
+<p>Whenever a stage is called, each of its input parameters must be bound to either an output parameter of another stage, or an input parameter of the enclosing pipeline. Parameter bindings use a dotted notation where the left-hand term is either the name of a stage, or <code>self</code> when binding to an input of the pipeline itself.</p>
+
+<p>Each output parameter of the pipeline must also be bound to an output of one of its called stages. This is done using a <code>return</code> statement, as shown above.</p>
+
+<p>Martian enforces type matching on parameter bindings, statically verifying that two parameters bound together have the same type.</p>
+
+<h2 id="types">Types</h2>
+
+<p>Martian supports the following built-in types:</p>
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>string</td>
+<td>A string.</td>
+</tr>
+
+<tr>
+<td>int</td>
+<td>An integer number.</td>
+</tr>
+
+<tr>
+<td>float</td>
+<td>A floating point number with support for exponential notation.</td>
+</tr>
+
+<tr>
+<td>bool</td>
+<td>A boolean flag whose valid values are <code>true</code> and <code>false</code>.</td>
+</tr>
+
+<tr>
+<td>path</td>
+<td>A string meant to be interpreted as a filesystem path.</td>
+</tr>
+
+<tr>
+<td>map</td>
+<td>A JSON-compatible data structure whose top-level type is an object.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Martian also supports user-defined filetypes for which file extensions are enforced. A filetype is defined and referenced like this:</p>
+
+<pre><code>filetype txt;
+
+stage SORT(
+    in  txt  unsorted_txt,
+    in  bool case_sensitive,
+    out txt  sorted_txt,
+    src py   &quot;stages/sort&quot;,
+)
+</code></pre>
+
+<h2 id="chunks">Chunks</h2>
+
+<h2 id="forks">Forks</h2>
+
+<h2 id="preflights">Preflights</h2>
+
+
+			<aside class="copyright" role="note">
+				
+				&copy; 2017 Released under the MIT license 
+				
+				
+			</aside>
+
+			<footer class="footer">
+				
+
+<nav class="pagination" aria-label="Footer">
+  <div class="previous">
+  
+      <a href="https://example.org/" title="What is Martian?">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              What is Martian?
+            </div>
+          </div>
+        </div>
+      </a>
+  
+  </div>
+
+  <div class="next">
+  
+  </div>
+</nav>
+
+
+
+
+
+			</footer>
+		</div>
+	</article>
+
+	<div class="results" role="status" aria-live="polite">
+		<div class="scrollable">
+			<div class="wrapper">
+				<div class="meta"></div>
+				<div class="list"></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+    <script>
+    
+      var base_url = 'https:\/\/example.org\/';
+      var repo_id  = 'digitalcraftsman\/hugo-material-docs';
+    
+    </script>
+
+    <script src="https://example.org/javascripts/application.js"></script>
+    
+
+    <script>
+      /* Add headers to scrollspy */
+      var headers   = document.getElementsByTagName("h2");
+      var scrollspy = document.getElementById('scrollspy');
+
+      if(scrollspy) {
+        if(headers.length > 0) {
+          for(var i = 0; i < headers.length; i++) {
+            var li = document.createElement("li");
+            li.setAttribute("class", "anchor");
+
+            var a  = document.createElement("a");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", headers[i].innerHTML);
+            a.innerHTML = headers[i].innerHTML;
+
+            li.appendChild(a)
+            scrollspy.appendChild(li);
+          }
+        } else {
+          scrollspy.parentElement.removeChild(scrollspy)
+        }
+
+
+        /* Add permanent link next to the headers */
+        var headers = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+
+        for(var i = 0; i < headers.length; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("class", "headerlink");
+            a.setAttribute("href", "#" + headers[i].id);
+            a.setAttribute("title", "Permanent link")
+            a.innerHTML = "#";
+            headers[i].appendChild(a);
+        }
+      }
+    </script>
+
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
