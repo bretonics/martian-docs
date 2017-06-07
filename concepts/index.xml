@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Concepts on Martian</title>
-    <link>https://martian-lang.github.io/concepts/</link>
+    <link>https://martian-lang.github.io/martian-docs/concepts/</link>
     <description>Recent content in Concepts on Martian</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Sun, 21 May 2017 17:53:15 -0700</lastBuildDate>
     
-	<atom:link href="https://martian-lang.github.io/concepts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://martian-lang.github.io/martian-docs/concepts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Writing Pipelines</title>
-      <link>https://martian-lang.github.io/concepts/</link>
+      <link>https://martian-lang.github.io/martian-docs/concepts/</link>
       <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
       
-      <guid>https://martian-lang.github.io/concepts/</guid>
+      <guid>https://martian-lang.github.io/martian-docs/concepts/</guid>
       <description>Stages A stage is the fundamental unit of computation in Martian, and is composed with other stages into Martian pipelines, which are directed, acyclic graphs of stages.
 Martian stages can be implemented in any language, and each stage can even be implemented in a different language, if desired. Martian manages the flow of data from the outputs of one stage to the inputs of one or more downstream stages in the graph.</description>
     </item>

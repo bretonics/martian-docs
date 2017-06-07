@@ -2,68 +2,68 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Martian</title>
-    <link>https://martian-lang.github.io/</link>
+    <link>https://martian-lang.github.io/martian-docs/</link>
     <description>Recent content on Martian</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Sun, 21 May 2017 17:53:15 -0700</lastBuildDate>
     
-	<atom:link href="https://martian-lang.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://martian-lang.github.io/martian-docs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>https://martian-lang.github.io/about/</link>
+      <link>https://martian-lang.github.io/martian-docs/about/</link>
       <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
       
-      <guid>https://martian-lang.github.io/about/</guid>
+      <guid>https://martian-lang.github.io/martian-docs/about/</guid>
       <description>Martian was created by @ablewhiskey at 10x Genomics, where it serves as a core part of the software engineering toolchain. As a developer framework, Martian helps to make tractable the building and maintenance of over 30 pipelines by 25+ developers. As a runtime, Martian has cumulatively executed, just internally at 10x Genomics, over 91 million jobs consuming 1.3 core-millennia of CPU time. Martian has executed many millions more core-hours at customer sites, and is one of the most heavily exercised computational pipeline frameworks in the field.</description>
     </item>
     
     <item>
       <title>Compiling</title>
-      <link>https://martian-lang.github.io/compiling/</link>
+      <link>https://martian-lang.github.io/martian-docs/compiling/</link>
       <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
       
-      <guid>https://martian-lang.github.io/compiling/</guid>
+      <guid>https://martian-lang.github.io/martian-docs/compiling/</guid>
       <description>mrc --all  mrc mypipeline.mro  </description>
     </item>
     
     <item>
       <title>Getting Started</title>
-      <link>https://martian-lang.github.io/getting-started/</link>
+      <link>https://martian-lang.github.io/martian-docs/getting-started/</link>
       <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
       
-      <guid>https://martian-lang.github.io/getting-started/</guid>
+      <guid>https://martian-lang.github.io/martian-docs/getting-started/</guid>
       <description>go for it</description>
     </item>
     
     <item>
       <title>Running Pipelines</title>
-      <link>https://martian-lang.github.io/language/</link>
+      <link>https://martian-lang.github.io/martian-docs/language/</link>
       <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
       
-      <guid>https://martian-lang.github.io/language/</guid>
+      <guid>https://martian-lang.github.io/martian-docs/language/</guid>
       <description></description>
     </item>
     
     <item>
       <title>What is Martian?</title>
-      <link>https://martian-lang.github.io/</link>
+      <link>https://martian-lang.github.io/martian-docs/</link>
       <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
       
-      <guid>https://martian-lang.github.io/</guid>
+      <guid>https://martian-lang.github.io/martian-docs/</guid>
       <description>Martian is a language and framework for developing and executing complex computational pipelines.
  Allows you to combine software components written in any language into a single pipeline Designed for simplicity: simple to learn, simple to develop, simple to run, simple to debug Powerful support for scaling computationally intensive pipelines from standalone machines, to clusters, to cloud Rich support for managing complex, data-intensive pipelines  Motivation &amp;amp; Design Goals  Like any good developer tool: Reduce cognitive load, manage complexity and enhance tractablility.</description>
     </item>
     
     <item>
       <title>Writing Pipelines</title>
-      <link>https://martian-lang.github.io/concepts/</link>
+      <link>https://martian-lang.github.io/martian-docs/concepts/</link>
       <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
       
-      <guid>https://martian-lang.github.io/concepts/</guid>
+      <guid>https://martian-lang.github.io/martian-docs/concepts/</guid>
       <description>Stages A stage is the fundamental unit of computation in Martian, and is composed with other stages into Martian pipelines, which are directed, acyclic graphs of stages.
 Martian stages can be implemented in any language, and each stage can even be implemented in a different language, if desired. Martian manages the flow of data from the outputs of one stage to the inputs of one or more downstream stages in the graph.</description>
     </item>

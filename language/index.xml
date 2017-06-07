@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Languages on Martian</title>
-    <link>https://martian-lang.github.io/language/</link>
+    <link>https://martian-lang.github.io/martian-docs/language/</link>
     <description>Recent content in Languages on Martian</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Released under the MIT license</copyright>
     <lastBuildDate>Sun, 21 May 2017 17:53:15 -0700</lastBuildDate>
     
-	<atom:link href="https://martian-lang.github.io/language/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://martian-lang.github.io/martian-docs/language/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Running Pipelines</title>
-      <link>https://martian-lang.github.io/language/</link>
+      <link>https://martian-lang.github.io/martian-docs/language/</link>
       <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
       
-      <guid>https://martian-lang.github.io/language/</guid>
+      <guid>https://martian-lang.github.io/martian-docs/language/</guid>
       <description></description>
     </item>
     
