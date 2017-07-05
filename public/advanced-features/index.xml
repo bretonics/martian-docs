@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Advanced-features on Martian</title>
+    <link>https://martian-lang.github.io/martian-docs/advanced-features/</link>
+    <description>Recent content in Advanced-features on Martian</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Released under the MIT license</copyright>
+    <lastBuildDate>Sun, 21 May 2017 17:53:15 -0700</lastBuildDate>
+    
+	<atom:link href="https://martian-lang.github.io/martian-docs/advanced-features/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Advanced Features</title>
+      <link>https://martian-lang.github.io/martian-docs/advanced-features/</link>
+      <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
+      
+      <guid>https://martian-lang.github.io/martian-docs/advanced-features/</guid>
+      <description> Job Management Local Mode Cluster Mode Templates Throttling Preflight Checks Parallelization Volatile Data Removal volatile keyword.
+Parameter Sweeping Performance Analysis Completion Hooks </description>
+    </item>
+    
+  </channel>
+</rss>
