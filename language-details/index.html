@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Martian</title>
+    <title>MRO Language - Martian</title>
     <meta name="generator" content="Hugo 0.24.1" />
 
     
     <meta name="description" content="A material design theme for documentations.">
     
-    <link rel="canonical" href="https://martian-lang.github.io/martian-docs/">
+    <link rel="canonical" href="https://martian-lang.github.io/martian-docs/language-details/">
     
     <meta name="author" content="Digitalcraftsman">
     
 
-    <meta property="og:url" content="https://martian-lang.github.io/martian-docs/">
+    <meta property="og:url" content="https://martian-lang.github.io/martian-docs/language-details/">
     <meta property="og:title" content="Martian">
     <meta property="og:image" content="https://martian-lang.github.io/martian-docs/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Martian">
@@ -70,9 +70,6 @@
     
     <script src="https://martian-lang.github.io/martian-docs/javascripts/modernizr.js"></script>
 
-    
-    <link href="https://martian-lang.github.io/martian-docs/index.xml" rel="alternate" type="application/rss+xml" title="Martian" />
-    <link href="https://martian-lang.github.io/martian-docs/index.xml" rel="feed" type="application/rss+xml" title="Martian" />
     
 
   </head>
@@ -284,11 +281,14 @@
 
 
 
-<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
+<a class="current" title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
 	
 	Language Details
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
   
@@ -330,45 +330,106 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>What is Martian? </h1>
-
-				
-
-<p>Martian is a language and framework for developing and executing complex computational pipelines.</p>
-
-<p>Manages complexity.</p>
-
-<p>Increases performance and quality.</p>
-
-<ul>
-<li>Allows you to combine software components written in any language into a single pipeline</li>
-<li>Designed for simplicity: simple to learn, simple to develop, simple to run, simple to debug</li>
-<li>Powerful support for scaling computationally intensive pipelines from standalone machines, to clusters, to cloud</li>
-<li>Rich support for managing complex, data-intensive pipelines</li>
-</ul>
-
-<h2 id="motivation-design-goals">Motivation &amp; Design Goals</h2>
-
-<ul>
-<li>Like any good developer tool: Reduce cognitive load, manage complexity and enhance tractablility.</li>
-<li>Simplicity, just makes sense when you look at it, eschew esotericity</li>
-<li>Language is familiar, like the average person</li>
-<li>No boilerplate</li>
-<li>Why have a separate language</li>
-<li>No separate database or web server required</li>
-<li>Manage data growth</li>
-<li>Manage provenance</li>
-<li>Easy navigability</li>
-<li>Consistency</li>
-<li>Computability - code is obviously computable, but the codebase is not, machine reasoning about the structure of pipelines</li>
-</ul>
+			<h1>MRO Language </h1>
 
 			
+
+<h2 id="symbols-and-scope">Symbols and Scope</h2>
+
+<p>Symbols in Martian are identifiers for stages, pipelines, and parameters. They may comprise uppercase and lowercase letters, numeric digits, and underscores. A symbol may not begin with a numeric digit, which is reserved for number literals. The Martian lexer&rsquo;s regular expression for symbols is <code>[a-zA-Z_][a-zA-Z0-9_]*\\b</code>.</p>
+
+<p>Martian defines two scopes within which symbol names must be unique:</p>
+
+<ol>
+<li>Within the scope of one pipeline invocation, which encompasses all recursively included MRO files, no two stages or pipelines may share the same name. This is considered the global scope of a pipestance.</li>
+<li>Within the scope of a stage declaration, no two input parameters of a given stage can have the same name, and same for output parameters.</li>
+</ol>
+
+<h3 id="naming-conventions">Naming Conventions</h3>
+
+<p>The following naming conventions are strongly recommended for consistency and readability, but are not currently enforced by the compiler.</p>
+
+<p>Stage and pipeline names should written in <code>ALL CAPS SNAKE_CASE</code>.</p>
+
+<ul>
+<li>Stage names should be a subject and verb: <code>FIND_DIPS</code>, <code>CALL_VARIANTS</code></li>
+<li>Pipelines names should be actor verbs: <code>COIN_SORTER</code>, <code>DYSON_SPHERE_DETECTOR</code></li>
+<li>Names of pipelines intended to serve as subpipelines should be prefixed with an underscore: <code>_METRICS_REPORTER</code></li>
+</ul>
+
+<p>Parameter names should be written in <code>all lowercase snake_case</code>.</p>
+
+<h2 id="parameter-binding">Parameter Binding</h2>
+
+<p>This section describes the rules associated with parameter binding, the mechanism by which inputs and outputs of stages and pipelines are connected together.</p>
+
+<p>Whenever a stage is called, each of its input parameters must be bound to either an output parameter of another stage, or an input parameter of the enclosing pipeline. Parameter bindings use a dotted notation where the left-hand term is either the name of a stage, or <code>self</code> when binding to an input of the pipeline itself.</p>
+
+<p>Each output parameter of the pipeline must also be bound to an output of one of its called stages. This is done using a <code>return</code> statement, as shown above.</p>
+
+<p>Martian enforces type matching on parameter bindings, statically verifying that two parameters bound together have the same type.</p>
+
+<h2 id="types">Types</h2>
+
+<p>Martian supports the following built-in types:</p>
+
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>string</td>
+<td>A string.</td>
+</tr>
+
+<tr>
+<td>int</td>
+<td>An integer number.</td>
+</tr>
+
+<tr>
+<td>float</td>
+<td>A floating point number with support for exponential notation.</td>
+</tr>
+
+<tr>
+<td>bool</td>
+<td>A boolean flag whose valid values are <code>true</code> and <code>false</code>.</td>
+</tr>
+
+<tr>
+<td>path</td>
+<td>A string meant to be interpreted as a filesystem path.</td>
+</tr>
+
+<tr>
+<td>map</td>
+<td>A JSON-compatible data structure whose top-level type is an object.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Martian also supports user-defined filetypes for which file extensions are enforced. A filetype is defined and referenced like this:</p>
+
+<pre><code>filetype txt;
+
+stage SORT(
+    in  txt  unsorted_txt,
+    in  bool case_sensitive,
+    out txt  sorted_txt,
+    src py   &quot;stages/sort&quot;,
+)
+</code></pre>
+
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2017 Released under the MIT license &ndash;
+				&copy; 2017 Released under the MIT license 
 				
 				
 			</aside>
@@ -376,23 +437,37 @@
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://martian-lang.github.io/martian-docs/inspecting-pipelines/" title="Inspecting Pipelines">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Inspecting Pipelines
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://martian-lang.github.io/martian-docs/tags/" title="Tags">
+  
+      <a href="https://martian-lang.github.io/martian-docs/running-pipelines/" title="Running Pipelines">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Tags
+              Running Pipelines
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -400,8 +475,11 @@
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 

@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Martian</title>
+    <title>Inspecting Pipelines - Martian</title>
     <meta name="generator" content="Hugo 0.24.1" />
 
     
     <meta name="description" content="A material design theme for documentations.">
     
-    <link rel="canonical" href="https://martian-lang.github.io/martian-docs/">
+    <link rel="canonical" href="https://martian-lang.github.io/martian-docs/inspecting-pipelines/">
     
     <meta name="author" content="Digitalcraftsman">
     
 
-    <meta property="og:url" content="https://martian-lang.github.io/martian-docs/">
+    <meta property="og:url" content="https://martian-lang.github.io/martian-docs/inspecting-pipelines/">
     <meta property="og:title" content="Martian">
     <meta property="og:image" content="https://martian-lang.github.io/martian-docs/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Martian">
@@ -70,9 +70,6 @@
     
     <script src="https://martian-lang.github.io/martian-docs/javascripts/modernizr.js"></script>
 
-    
-    <link href="https://martian-lang.github.io/martian-docs/index.xml" rel="alternate" type="application/rss+xml" title="Martian" />
-    <link href="https://martian-lang.github.io/martian-docs/index.xml" rel="feed" type="application/rss+xml" title="Martian" />
     
 
   </head>
@@ -230,11 +227,14 @@
 
 
 
-<a  title="Inspecting Pipelines" href="https://martian-lang.github.io/martian-docs/inspecting-pipelines/">
+<a class="current" title="Inspecting Pipelines" href="https://martian-lang.github.io/martian-docs/inspecting-pipelines/">
 	
 	Inspecting Pipelines
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
   
@@ -330,45 +330,51 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>What is Martian? </h1>
-
-				
-
-<p>Martian is a language and framework for developing and executing complex computational pipelines.</p>
-
-<p>Manages complexity.</p>
-
-<p>Increases performance and quality.</p>
-
-<ul>
-<li>Allows you to combine software components written in any language into a single pipeline</li>
-<li>Designed for simplicity: simple to learn, simple to develop, simple to run, simple to debug</li>
-<li>Powerful support for scaling computationally intensive pipelines from standalone machines, to clusters, to cloud</li>
-<li>Rich support for managing complex, data-intensive pipelines</li>
-</ul>
-
-<h2 id="motivation-design-goals">Motivation &amp; Design Goals</h2>
-
-<ul>
-<li>Like any good developer tool: Reduce cognitive load, manage complexity and enhance tractablility.</li>
-<li>Simplicity, just makes sense when you look at it, eschew esotericity</li>
-<li>Language is familiar, like the average person</li>
-<li>No boilerplate</li>
-<li>Why have a separate language</li>
-<li>No separate database or web server required</li>
-<li>Manage data growth</li>
-<li>Manage provenance</li>
-<li>Easy navigability</li>
-<li>Consistency</li>
-<li>Computability - code is obviously computable, but the codebase is not, machine reasoning about the structure of pipelines</li>
-</ul>
+			<h1>Inspecting Pipelines </h1>
 
 			
+
+<h2 id="pipestance-layout">Pipestance Layout</h2>
+
+<p><code>mrp</code> creates a folder structure.</p>
+
+<p>Easy to navigate. All you need are <code>cd</code>, <code>ls</code>, and <code>cat</code>. Pretty-printed JSON.</p>
+
+<p>All pipestance state are in the filesystem. No database.</p>
+
+<p><code>files</code> folders</p>
+
+<h3 id="metadata">Metadata</h3>
+
+<ul>
+<li><code>_log</code></li>
+<li><code>_jobinfo</code></li>
+<li><code>_stdout</code></li>
+<li><code>_stderr</code></li>
+<li><code>_errors</code></li>
+<li><code>_args</code></li>
+<li><code>_outs</code></li>
+<li><code>_complete</code></li>
+</ul>
+
+<h2 id="outputs">Outputs</h2>
+
+<p><code>outs</code> folder. Files get copied to this folder. Their original locations inside <code>files</code> folders are symlinked to the file in the <code>outs</code> folder.</p>
+
+<p><code>_uuid</code> uniquely identifies this pipestance. Useful for integration with other tracking systems.</p>
+
+<p><code>_timestamp</code> reports start and end times of the pipestance.</p>
+
+<p><code>invocation.mro</code> is copied and preserved. <code>mrosource.mro</code> contains the fully recursive preprocessed source code that was involved in this pipestance.</p>
+
+<h2 id="web-interface">Web Interface</h2>
+
+<p><code>--uiport=N</code></p>
+
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2017 Released under the MIT license &ndash;
+				&copy; 2017 Released under the MIT license 
 				
 				
 			</aside>
@@ -376,23 +382,37 @@
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://martian-lang.github.io/martian-docs/getting-started/" title="Getting Started">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Getting Started
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://martian-lang.github.io/martian-docs/tags/" title="Tags">
+  
+      <a href="https://martian-lang.github.io/martian-docs/language-details/" title="MRO Language">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Tags
+              MRO Language
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -400,8 +420,11 @@
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 

@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Martian</title>
+    <title>Running Pipelines - Martian</title>
     <meta name="generator" content="Hugo 0.24.1" />
 
     
     <meta name="description" content="A material design theme for documentations.">
     
-    <link rel="canonical" href="https://martian-lang.github.io/martian-docs/">
+    <link rel="canonical" href="https://martian-lang.github.io/martian-docs/running-pipelines/">
     
     <meta name="author" content="Digitalcraftsman">
     
 
-    <meta property="og:url" content="https://martian-lang.github.io/martian-docs/">
+    <meta property="og:url" content="https://martian-lang.github.io/martian-docs/running-pipelines/">
     <meta property="og:title" content="Martian">
     <meta property="og:image" content="https://martian-lang.github.io/martian-docs/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Martian">
@@ -70,9 +70,6 @@
     
     <script src="https://martian-lang.github.io/martian-docs/javascripts/modernizr.js"></script>
 
-    
-    <link href="https://martian-lang.github.io/martian-docs/index.xml" rel="alternate" type="application/rss+xml" title="Martian" />
-    <link href="https://martian-lang.github.io/martian-docs/index.xml" rel="feed" type="application/rss+xml" title="Martian" />
     
 
   </head>
@@ -212,11 +209,14 @@
 
 
 
-<a  title="Running Pipelines" href="https://martian-lang.github.io/martian-docs/running-pipelines/">
+<a class="current" title="Running Pipelines" href="https://martian-lang.github.io/martian-docs/running-pipelines/">
 	
 	Running Pipelines
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
 
   
@@ -330,45 +330,53 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>What is Martian? </h1>
-
-				
-
-<p>Martian is a language and framework for developing and executing complex computational pipelines.</p>
-
-<p>Manages complexity.</p>
-
-<p>Increases performance and quality.</p>
-
-<ul>
-<li>Allows you to combine software components written in any language into a single pipeline</li>
-<li>Designed for simplicity: simple to learn, simple to develop, simple to run, simple to debug</li>
-<li>Powerful support for scaling computationally intensive pipelines from standalone machines, to clusters, to cloud</li>
-<li>Rich support for managing complex, data-intensive pipelines</li>
-</ul>
-
-<h2 id="motivation-design-goals">Motivation &amp; Design Goals</h2>
-
-<ul>
-<li>Like any good developer tool: Reduce cognitive load, manage complexity and enhance tractablility.</li>
-<li>Simplicity, just makes sense when you look at it, eschew esotericity</li>
-<li>Language is familiar, like the average person</li>
-<li>No boilerplate</li>
-<li>Why have a separate language</li>
-<li>No separate database or web server required</li>
-<li>Manage data growth</li>
-<li>Manage provenance</li>
-<li>Easy navigability</li>
-<li>Consistency</li>
-<li>Computability - code is obviously computable, but the codebase is not, machine reasoning about the structure of pipelines</li>
-</ul>
+			<h1>Running Pipelines </h1>
 
 			
+
+<h2 id="invoking-a-pipeline">Invoking a Pipeline</h2>
+
+<p>Thus far we have shown how to define stages and pipelines in MRO files. To run a pipeline, one writes a single pipeline <code>call</code> statement with a particular set of input arguments, into an MRO file. This is called an invocation. To invoke the example pipeline from above:</p>
+
+<p><code>invoke.mro</code></p>
+
+<pre><code>@include &quot;pipeline.mro&quot;
+
+call DUPLICATE_FINDER(
+    unsorted = &quot;/home/duplicator_dave/unsorted.txt&quot;,
+)
+</code></pre>
+
+<p>Typically, an invocation MRO file contains a single <code>@include</code> statement that includes the pipeline definition, and a single <code>call</code> statement. It is generally discouraged to <code>call</code> a pipeline in the same file in which it is defined, because then the pipeline definition cannot be easily reused for other invocations with different input arguments.</p>
+
+<p>When a pipeline is run, the instantiation of it is called a <strong>&ldquo;pipestance&rdquo;</strong>, which is a portmanteau of &ldquo;pipeline&rdquo; and &ldquo;instance&rdquo;.</p>
+
+<p>For more details on how to run an invocation MRO with the Martian runtime, see <a href="../running-pipelines">Running Pipelines</a>.</p>
+
+<p>Running a pipeline requires an invocation MRO file that contains a pipeline <code>call</code> statement. We will use the example invocation from the <a href="../writing-pipelines/#pipeline-invocation">Writing Pipelines</a> section:</p>
+
+<p><code>invoke.mro</code></p>
+
+<pre><code>@include &quot;pipeline.mro&quot;
+
+call DUPLICATE_FINDER(
+    unsorted = &quot;/home/duplicator_dave/unsorted.txt&quot;,
+)
+</code></pre>
+
+<h2 id="how-mrp-works">How mrp Works</h2>
+
+<pre><code>mrp invoke.mro
+</code></pre>
+
+<h2 id="restarting">Restarting</h2>
+
+<h2 id="logging">Logging</h2>
+
 
 			<aside class="copyright" role="note">
 				
-				&copy; 2017 Released under the MIT license &ndash;
+				&copy; 2017 Released under the MIT license 
 				
 				
 			</aside>
@@ -376,23 +384,37 @@
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://martian-lang.github.io/martian-docs/language-details/" title="MRO Language">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              MRO Language
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://martian-lang.github.io/martian-docs/tags/" title="Tags">
+  
+      <a href="https://martian-lang.github.io/martian-docs/" title="What is Martian?">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Tags
+              What is Martian?
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -400,8 +422,11 @@
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 
