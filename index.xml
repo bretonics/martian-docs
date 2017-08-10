@@ -95,8 +95,7 @@ invoke.mro
       
       <guid>https://martian-lang.github.io/martian-docs/</guid>
       <description>Martian is a language and framework for developing and executing complex computational pipelines.
-Manages complexity.
-Increases performance and quality.
+Increases performance and quality. Manages complexity.
  Allows you to combine software components written in any language into a single pipeline Designed for simplicity: simple to learn, simple to develop, simple to run, simple to debug Powerful support for scaling computationally intensive pipelines from standalone machines, to clusters, to cloud Rich support for managing complex, data-intensive pipelines  Motivation &amp;amp; Design Goals  Like any good developer tool: Reduce cognitive load, manage complexity and enhance tractablility.</description>
     </item>
     
