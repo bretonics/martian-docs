@@ -209,24 +209,6 @@
 
 
 
-<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
-	
-	Language Details
-</a>
-
-
-
-  
-</li>
-
-
-
-<li>
-  
-    
-
-
-
 <a  title="Running Pipelines" href="https://martian-lang.github.io/martian-docs/running-pipelines/">
 	
 	Running Pipelines
@@ -302,6 +284,24 @@
 
 
 
+<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
+	
+	Language Details
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
 <a  title="About" href="https://martian-lang.github.io/martian-docs/about/">
 	
 	About
@@ -334,6 +334,17 @@
 
 			
 
+<p>Martian supports a number of advanced features to provide:</p>
+
+<ul>
+<li>Performance and resource efficiency that scales from single servers to large high-performance compute clusters</li>
+<li>Early error detection</li>
+<li>Data storage efficiency</li>
+<li>Loosely-coupled integration with other systems</li>
+</ul>
+
+<h2 id="parallelization">Parallelization</h2>
+
 <p>[ WIP ]</p>
 
 <h2 id="job-management">Job Management</h2>
@@ -348,8 +359,6 @@
 
 <h2 id="preflight-checks">Preflight Checks</h2>
 
-<h2 id="parallelization">Parallelization</h2>
-
 <h2 id="volatile-data-removal">Volatile Data Removal</h2>
 
 <p><code>volatile</code> keyword.</p>
@@ -359,6 +368,48 @@
 <h2 id="performance-analysis">Performance Analysis</h2>
 
 <h2 id="completion-hooks">Completion Hooks</h2>
+
+<ul>
+<li>path to pipestance</li>
+<li>{complete|failed}</li>
+<li>pipestance ID</li>
+<li>path to error file (if there was an error)</li>
+</ul>
+
+<h3 id="mrp-options">mrp Options</h3>
+
+<p>The rest are described here:</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>--zip</code></td>
+<td>After pipestance Zip metadata files after pipestance completes.</td>
+</tr>
+
+<tr>
+<td><code>--tags=TAGS</code></td>
+<td>Tag pipestance with comma-separated key:value pairs.</td>
+</tr>
+
+<tr>
+<td><code>--autoretry=NUM</code></td>
+<td>Automatically retry failed runs up to NUM times.</td>
+</tr>
+
+<tr>
+<td>All others</td>
+<td>See <a href="../advanced-features">Advanced Features</a></td>
+</tr>
+</tbody>
+</table>
 
 
 			<aside class="copyright" role="note">
@@ -372,7 +423,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://martian-lang.github.io/martian-docs/about/" title="About">
+      <a href="https://martian-lang.github.io/martian-docs/writing-stages/" title="Writing Stages">
         <span class="direction">
           Previous
         </span>
@@ -382,7 +433,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              About
+              Writing Stages
             </div>
           </div>
         </div>
@@ -392,14 +443,14 @@
 
   <div class="next">
   
-      <a href="https://martian-lang.github.io/martian-docs/compiling/" title="Compiling">
+      <a href="https://martian-lang.github.io/martian-docs/language-details/" title="Language Details">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Compiling
+              Language Details
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -479,7 +530,7 @@
 
     
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>

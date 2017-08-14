@@ -212,24 +212,6 @@
 
 
 
-<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
-	
-	Language Details
-</a>
-
-
-
-  
-</li>
-
-
-
-<li>
-  
-    
-
-
-
 <a  title="Running Pipelines" href="https://martian-lang.github.io/martian-docs/running-pipelines/">
 	
 	Running Pipelines
@@ -302,6 +284,24 @@
 
 
 
+<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
+	
+	Language Details
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
 <a  title="About" href="https://martian-lang.github.io/martian-docs/about/">
 	
 	About
@@ -334,25 +334,134 @@
 
 			
 
-<h2 id="installing">Installing</h2>
+<h2 id="installing-martian">Installing Martian</h2>
 
-<p>The easiest way to start using Martian is to download its binary distribution. (Standalone binaries coming soon. Binaries currently available as part of 10x Genomics software packages.)</p>
+<p>Official binary distributions of the Martian toolchain are available for Linux, macOS and Windows:</p>
+
+<table>
+<thead>
+<tr>
+<th>Download</th>
+<th>OS</th>
+<th>Arch</th>
+<th>SHA256</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><a href="-">martian-2.2.0-linux-amd64.tar.gz</a></td>
+<td>Linux</td>
+<td>x86-64</td>
+<td></td>
+</tr>
+
+<tr>
+<td><a href="-">martian-2.2.0-darwin-amd64.tar.gz</a></td>
+<td>macOS</td>
+<td>x86-64</td>
+<td></td>
+</tr>
+
+<tr>
+<td>Coming soon</td>
+<td>Windows</td>
+<td>x86-64</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="building-from-source">Building from Source</h2>
+
+<p>To build the Martian toolchain from source, clone the <a href="https://github.com/martian-lang/martian">Martian GitHub repository</a>, run <code>make all</code>, and the compiled binaries will be generated in <code>bin/</code>.</p>
+
+<pre><code>$ git clone --recursive https://github.com/martian-lang/martian.git
+$ cd martian
+$ make all
+$ ls bin
+mrc         mrp         mrf         mrs
+</code></pre>
 
 <h2 id="environment-setup">Environment Setup</h2>
 
-<p>Append the folder where you installed the Martian binaries to your <code>PATH</code>. Verify that you can run the binaries:</p>
+<h3 id="martian-executables">Martian Executables</h3>
 
-<pre><code>$ mrc --version
-2.2.0
-$ mrp --version
+<p>The Martian toolchain comprises four core executables:</p>
+
+<table>
+<thead>
+<tr>
+<th>Executable</th>
+<th>Role</th>
+<th>Details</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>mrc</code></td>
+<td>Compiler/Checker</td>
+<td>Parses and validates Martian code</td>
+</tr>
+
+<tr>
+<td><code>mrf</code></td>
+<td>Formatter</td>
+<td>Canonicalizes Martian code formatting and whitespace</td>
+</tr>
+
+<tr>
+<td><code>mrp</code></td>
+<td>Pipeline Runtime</td>
+<td>Executes a Martian pipeline</td>
+</tr>
+
+<tr>
+<td><code>mrs</code></td>
+<td>Stage Runtime</td>
+<td>Executes an individual Martian pipeline stage</td>
+</tr>
+</tbody>
+</table>
+
+<p>Make these executables available on your <code>PATH</code> and then confirm that you can run them. If you unpacked or cloned Martian into <code>/home/user/git/martian</code>, for example, then:</p>
+
+<pre><code>$ export PATH=$PATH:/home/user/git/martian/bin
+$ mrc --version
 2.2.0
 </code></pre>
 
-<p>Set <code>MROPATH</code> to a folder where you will write stage and pipeline code.</p>
+<h3 id="martian-project-path-mropath">Martian Project Path – MROPATH</h3>
 
-<h2 id="source-code">Source Code</h2>
+<p>The code for a Martian pipeline project typically lives under a single directory. Set <code>MROPATH</code> to this directory to allow the Martian executables to find the project code without the need for absolute paths.</p>
 
-<p><a href="https://github.com/martian-lang/martian">Martian GitHub repository</a> (Coming soon.)</p>
+<p>When developing multiple projects, switch between them by changing <code>MROPATH</code>.</p>
+
+<p>To give you an idea of how a Martian project looks in practice, here&rsquo;s an example:</p>
+
+<pre><code>martian_project/
+    lib/
+        go/
+            bin/
+                hello_go
+            src/
+                hello_go.go
+        rust/
+            Cargo.lock
+            Cargo.toml
+            bin/
+                hello_rust
+            src/
+                hello_rust.rs
+    mro/
+        _hello_stages.mro
+        hello.mro
+        stages/
+            hello/
+                hello_py/
+                    __init__.py
+</code></pre>
 
 
 			<aside class="copyright" role="note">
@@ -366,7 +475,7 @@ $ mrp --version
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://martian-lang.github.io/martian-docs/compiling/" title="Compiling">
+      <a href="https://martian-lang.github.io/martian-docs/" title="What is Martian?">
         <span class="direction">
           Previous
         </span>
@@ -376,7 +485,7 @@ $ mrp --version
           </div>
           <div class="stretch">
             <div class="title">
-              Compiling
+              What is Martian?
             </div>
           </div>
         </div>
@@ -386,14 +495,14 @@ $ mrp --version
 
   <div class="next">
   
-      <a href="https://martian-lang.github.io/martian-docs/inspecting-pipelines/" title="Inspecting Pipelines">
+      <a href="https://martian-lang.github.io/martian-docs/writing-pipelines/" title="Writing Pipelines">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Inspecting Pipelines
+              Writing Pipelines
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -473,7 +582,7 @@ $ mrp --version
 
     
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>

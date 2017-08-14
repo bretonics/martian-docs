@@ -6,7 +6,7 @@
     <description>Recent content in Abouts on Martian</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 May 2017 17:53:15 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 01 May 2016 17:53:15 -0700</lastBuildDate>
     
 	<atom:link href="https://martian-lang.github.io/martian-docs/about/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,10 @@
     <item>
       <title>About</title>
       <link>https://martian-lang.github.io/martian-docs/about/</link>
-      <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
+      <pubDate>Sun, 01 May 2016 17:53:15 -0700</pubDate>
       
       <guid>https://martian-lang.github.io/martian-docs/about/</guid>
-      <description>Martian was created by at 10x Genomics, where it serves as a core part of the software engineering toolchain. As a developer framework, Martian helps to make tractable the building and maintenance of over 30 pipelines by 25+ developers. As a runtime, Martian has cumulatively executed, just internally at 10x Genomics, over 91 million jobs consuming 1.3 core-millennia of CPU time. Martian has executed many millions more core-hours at customer sites, and is one of the most heavily exercised computational pipeline frameworks deployed in the field.</description>
+      <description>Martian was created at 10x Genomics, where it serves as a core part of the software engineering toolchain. As a developer framework, Martian helps to make tractable the design, development and maintenance of over 30 pipelines by 25+ developers. As a runtime, Martian has cumulatively executed, just internally at 10x Genomics, over 100 million jobs consuming 1.5 core-millennia of CPU time. Martian has executed many millions more core-hours at customer sites, and is one of the most heavily exercised computational pipeline frameworks deployed in the field.</description>
     </item>
     
   </channel>

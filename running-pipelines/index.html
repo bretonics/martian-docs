@@ -209,24 +209,6 @@
 
 
 
-<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
-	
-	Language Details
-</a>
-
-
-
-  
-</li>
-
-
-
-<li>
-  
-    
-
-
-
 <a class="current" title="Running Pipelines" href="https://martian-lang.github.io/martian-docs/running-pipelines/">
 	
 	Running Pipelines
@@ -302,6 +284,24 @@
 
 
 
+<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
+	
+	Language Details
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
 <a  title="About" href="https://martian-lang.github.io/martian-docs/about/">
 	
 	About
@@ -336,7 +336,7 @@
 
 <h2 id="invoking-a-pipeline">Invoking a Pipeline</h2>
 
-<p>Thus far we have shown how to define stages and pipelines in MRO files. To run a pipeline, one writes a single pipeline <code>call</code> statement with a particular set of input arguments, into an MRO file. This is called an invocation. To invoke the example pipeline from above:</p>
+<p>Thus far we have shown how to <strong>define</strong> stages and pipelines in MRO files. To <strong>invoke</strong> a pipeline, write an MRO file containing a pipeline <code>call</code> statement with the desired input arguments. This <code>call</code> statement is called an <strong>invocation</strong>. To invoke the example pipeline from above:</p>
 
 <p><code>invoke.mro</code></p>
 
@@ -347,39 +347,51 @@ call DUPLICATE_FINDER(
 )
 </code></pre>
 
-<p>Typically, an invocation MRO file contains a single <code>@include</code> statement that includes the pipeline definition, and a single <code>call</code> statement. It is generally discouraged to <code>call</code> a pipeline in the same file in which it is defined, because then the pipeline definition cannot be easily reused for other invocations with different input arguments.</p>
+<p>Typically, an invocation MRO file contains a single <code>@include</code> statement that causes the pipeline definition to be included, and a single <code>call</code> statement of that pipeline. It is generally discouraged to <code>call</code> a pipeline in the same file in which it is defined, because then the pipeline definition cannot be easily reused for other invocations with different input arguments.</p>
 
-<p>When a pipeline is run, the instantiation of it is called a <strong>&ldquo;pipestance&rdquo;</strong>, which is a portmanteau of &ldquo;pipeline&rdquo; and &ldquo;instance&rdquo;.</p>
+<h2 id="running-mrp">Running mrp</h2>
 
-<p>For more details on how to run an invocation MRO with the Martian runtime, see <a href="../running-pipelines">Running Pipelines</a>.</p>
+<p><code>mrp</code> is the runtime executable that runs Martian pipelines. When a pipeline is run, the instantiation of it is called a <strong>pipestance</strong>, which is a portmanteau of &ldquo;pipeline&rdquo; and &ldquo;instance&rdquo;. The command-line interface for <code>mrp</code> is:</p>
 
-<p>Running a pipeline requires an invocation MRO file that contains a pipeline <code>call</code> statement. We will use the example invocation from the <a href="../writing-pipelines/#pipeline-invocation">Writing Pipelines</a> section:</p>
-
-<p><code>invoke.mro</code></p>
-
-<pre><code>@include &quot;pipeline.mro&quot;
-
-call DUPLICATE_FINDER(
-    unsorted = &quot;/home/duplicator_dave/unsorted.txt&quot;,
-)
+<pre><code>$ mrp &lt;invocation_mro&gt; &lt;pipestance_id&gt;
 </code></pre>
 
-<h2 id="how-mrp-works">How mrp Works</h2>
+<p>To start a run, provide an invocation MRO file, plus a unique <strong>pipestance ID</strong>, comprising only numbers, letters, dashes, and underscores. This ID will be the name of the directory containing the pipestance. When running a pipeline multiple times, choose a different pipestance ID for each run.</p>
 
-<p>To run a pipeline, simply pass the invocation MRO file to <code>mrp</code>, which is the Martian runtime that executes pipelines.</p>
+<p><code>mrp</code> features a number of command-line options, which are documented in <a href="../advanced-features">Advanced Features</a>.</p>
 
-<pre><code>mrp invoke.mro
+<p>Once <code>mrp</code> starts, you should see the following output:</p>
+
+<pre><code>$ mrp invoke.mro piperun1
+Martian Runtime - 2.2.0
+
+Running preflight checks (please wait)...
+2018-01-02 14:23:52 [runtime] (ready)           ID.piperun1.DUPLICATE_FINDER.SORT_ITEMS
+2018-01-02 14:23:53 [runtime] (split_complete)  ID.piperun1.DUPLICATE_FINDER.SORT_ITEMS
+2018-01-02 14:23:53 [runtime] (run:local)       ID.piperun1.DUPLICATE_FINDER.SORT_ITEMS.fork0.chnk0.main
 </code></pre>
 
-<p>[ WIP - mrp options ]</p>
+<p>At a high level, <code>mrp</code> performs the following to run a pipeline:</p>
+
+<ul>
+<li>Parse and validate MRO file (e.g. invoke.mro)</li>
+<li>Convert the MRO into a graph representation of the pipeline</li>
+<li>Create a directory for the pipestance named with the pipestance ID provided (e.g. piperun1)</li>
+<li>Begin evaluating dependencies and executing the stages of the pipeline</li>
+<li>Continuously monitor stages and advance through the pipeline graph when dependencies are satisfied</li>
+</ul>
+
+<h2 id="completion-and-failure">Completion and Failure</h2>
+
+<p>If the pipestance encounters no errors while running, <code>mrp</code> exits with status 0 and writes a <code>_complete</code> file in the top level of the pipestance directory.</p>
+
+<p>If the pipestance encounters does an encounter an error, <code>mrp</code> exits with status 1. The failed stage(s) will contain an <code>_errors</code> file with information about the error.</p>
+
+<p>For more details about how to examine an in-progress, completed, or failed pipestance, see <a href="../inspecting-pipelines">Inspecting Pipelines</a>.</p>
 
 <h2 id="restarting">Restarting</h2>
 
-<p>[ WIP ]</p>
-
-<h2 id="logging">Logging</h2>
-
-<p>[ WIP ]</p>
+<p>When a pipestance fails, it can be restarted by running <code>mrp</code> with the same arguments as before. <code>mrp</code> will identify the failed stages, and reset them to a clean state so that they can run again. Stages that have already completed successfully will not be reset or re-run.</p>
 
 
 			<aside class="copyright" role="note">
@@ -393,7 +405,7 @@ call DUPLICATE_FINDER(
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://martian-lang.github.io/martian-docs/language-details/" title="MRO Language">
+      <a href="https://martian-lang.github.io/martian-docs/writing-pipelines/" title="Writing Pipelines">
         <span class="direction">
           Previous
         </span>
@@ -403,7 +415,7 @@ call DUPLICATE_FINDER(
           </div>
           <div class="stretch">
             <div class="title">
-              MRO Language
+              Writing Pipelines
             </div>
           </div>
         </div>
@@ -413,14 +425,14 @@ call DUPLICATE_FINDER(
 
   <div class="next">
   
-      <a href="https://martian-lang.github.io/martian-docs/" title="What is Martian?">
+      <a href="https://martian-lang.github.io/martian-docs/inspecting-pipelines/" title="Inspecting Pipelines">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              What is Martian?
+              Inspecting Pipelines
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -500,7 +512,7 @@ call DUPLICATE_FINDER(
 
     
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>

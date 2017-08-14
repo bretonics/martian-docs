@@ -209,24 +209,6 @@
 
 
 
-<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
-	
-	Language Details
-</a>
-
-
-
-  
-</li>
-
-
-
-<li>
-  
-    
-
-
-
 <a  title="Running Pipelines" href="https://martian-lang.github.io/martian-docs/running-pipelines/">
 	
 	Running Pipelines
@@ -302,6 +284,24 @@
 
 
 
+<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
+	
+	Language Details
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
 <a  title="About" href="https://martian-lang.github.io/martian-docs/about/">
 	
 	About
@@ -334,15 +334,129 @@
 
 			
 
+<h2 id="overview">Overview</h2>
+
+<p>Martian supports writing pipeline stages in virtually any language. The only requirement is that the language support JSON, which is nearly universal.</p>
+
+<p>A Martian stage is an executable, either interpreted or compiled, that takes four command-line arguments as follows:</p>
+
+<pre><code>$ stage_executable &lt;type&gt; &lt;metadata_path&gt; &lt;files_path&gt; &lt;journal_prefix&gt;
+</code></pre>
+
+<p>The <code>type</code> argument is one of <code>split</code>, <code>join</code>, or <code>main</code> (the main body of the stage). The stage executable should switch on that type and provide implementations for each.</p>
+
+<h3 id="split-interface">Split Interface</h3>
+
 <p>[ WIP ]</p>
 
+<h3 id="join-interface">Join Interface</h3>
+
+<p>[ WIP ]</p>
+
+<h3 id="main-chunk-interface">Main/Chunk Interface</h3>
+
+<p>[ WIP ]</p>
+
+<p>More details in <a href="../advanced-features/#parallelization">Advanced Features: Parallelization</a>.</p>
+
 <h2 id="martian-adapter">Martian Adapter</h2>
+
+<p>Martian provides support for writing stages in the form of adapters, whose purpose is to provide to stages the following:</p>
+
+<ul>
+<li>A well-defined interface for stages to be invoked by <code>mrp</code></li>
+<li>Input arguments from upstream stages to be passed into the stage</li>
+<li>A well-defined method for returning output values to be passed to downstream stages</li>
+<li>An API so the stage can provide logging, status updates, and error reporting to its parent <code>mrp</code></li>
+</ul>
+
+<p>The goal of Martian adapters is to minimize the amount of boilerplate code written for each stage implementation. Exactly how stage code is written and structured varies with the implementation language. Below are examples for some languages that currently have Martian adapters.</p>
+
+<h2 id="martian-adapter-api">Martian Adapter API</h2>
+
+<p>The Martian adapter provides a number of services to the stage code:</p>
+
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>martian.make_path(filename)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>martian.get_martian_version</td>
+<td></td>
+</tr>
+
+<tr>
+<td>martian.get_pipelines_version</td>
+<td></td>
+</tr>
+
+<tr>
+<td>martian.update_progress(message)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>martian.log_info(message)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>martian.log_warn(message)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>martian.log_time(message)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>martian.log_json(label, obj)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>martian.throw(message)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>martian.exit(message)</td>
+<td></td>
+</tr>
+
+<tr>
+<td>martian.alarm(message)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="interpreted-languages">Interpreted Languages</h2>
 
 <h3 id="python">Python</h3>
 
+<p>A Martian stage written in Python is simply a Python module. That is, a directory with an <code>__init__.py</code> containing the stage code. When writing a stage, you do not need to provide a <code>__main__</code> method as the Martian Python adapter provides an executable wrapper script that does an <code>import</code> of your Python module.</p>
+
+<p>To satisfy the stage requirements, you must implement three functions <code>split</code>, <code>join</code>, and <code>main</code>, which will be called by the Martian Python adapter script.</p>
+
+<p>The Python module should be located in its own directory somewhere under the <code>MROPATH</code>. The specific path is then specified in the MRO code to connect the MRO stage definition with the location of the Python implementation, e.g. <code>src py &quot;path/to/my/python_module&quot;</code>. Martian would then expect to be able to Python <code>import</code> that path as a module, and for it to implement <code>split</code>, <code>join</code> and <code>main</code> functions.</p>
+
+<p>[ WIP ]</p>
+
 <h2 id="compiled-languages">Compiled Languages</h2>
+
+<p>Stage executables that are compiled must implement the command-line interface described above.</p>
 
 <h3 id="rust">Rust</h3>
 
@@ -350,9 +464,11 @@
 
 <h2 id="shell-scripts">Shell Scripts</h2>
 
-<h2 id="other-languages">Other Languages</h2>
+<p>Stage executables that are shell scripts must implement the command-line interface described above.</p>
 
-<h3 id="how-to-write-an-adapter">How to Write an Adapter</h3>
+<h2 id="writing-an-adapter">Writing an Adapter</h2>
+
+<p>If you are interested in developing a new Martian language adapter or contributing to an existing one, you can find more details <a href="https://github.com/martian-lang/martian/tree/master/adapters">here</a>.</p>
 
 
 			<aside class="copyright" role="note">
@@ -366,7 +482,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://martian-lang.github.io/martian-docs/writing-pipelines/" title="Writing Pipelines">
+      <a href="https://martian-lang.github.io/martian-docs/inspecting-pipelines/" title="Inspecting Pipelines">
         <span class="direction">
           Previous
         </span>
@@ -376,7 +492,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Writing Pipelines
+              Inspecting Pipelines
             </div>
           </div>
         </div>
@@ -385,6 +501,22 @@
   </div>
 
   <div class="next">
+  
+      <a href="https://martian-lang.github.io/martian-docs/advanced-features/" title="Advanced Features">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Advanced Features
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
   
   </div>
 </nav>
@@ -457,7 +589,7 @@
 
     
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>

@@ -6,7 +6,7 @@
     <description>Recent content in Advanced-features on Martian</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 May 2017 17:53:15 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 01 Jul 2016 17:53:15 -0700</lastBuildDate>
     
 	<atom:link href="https://martian-lang.github.io/martian-docs/advanced-features/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,12 +14,13 @@
     <item>
       <title>Advanced Features</title>
       <link>https://martian-lang.github.io/martian-docs/advanced-features/</link>
-      <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
+      <pubDate>Fri, 01 Jul 2016 17:53:15 -0700</pubDate>
       
       <guid>https://martian-lang.github.io/martian-docs/advanced-features/</guid>
-      <description> [ WIP ]
-Job Management Local Mode Cluster Mode Templates Throttling Preflight Checks Parallelization Volatile Data Removal volatile keyword.
-Parameter Sweeping Performance Analysis Completion Hooks </description>
+      <description>Martian supports a number of advanced features to provide:
+ Performance and resource efficiency that scales from single servers to large high-performance compute clusters Early error detection Data storage efficiency Loosely-coupled integration with other systems  Parallelization [ WIP ]
+Job Management Local Mode Cluster Mode Templates Throttling Preflight Checks Volatile Data Removal volatile keyword.
+Parameter Sweeping Performance Analysis Completion Hooks  path to pipestance {complete|failed} pipestance ID path to error file (if there was an error)  mrp Options The rest are described here:</description>
     </item>
     
   </channel>

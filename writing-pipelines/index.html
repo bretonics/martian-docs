@@ -212,24 +212,6 @@
 
 
 
-<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
-	
-	Language Details
-</a>
-
-
-
-  
-</li>
-
-
-
-<li>
-  
-    
-
-
-
 <a  title="Running Pipelines" href="https://martian-lang.github.io/martian-docs/running-pipelines/">
 	
 	Running Pipelines
@@ -302,6 +284,24 @@
 
 
 
+<a  title="Language Details" href="https://martian-lang.github.io/martian-docs/language-details/">
+	
+	Language Details
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
 <a  title="About" href="https://martian-lang.github.io/martian-docs/about/">
 	
 	About
@@ -336,7 +336,7 @@
 
 <h2 id="stages">Stages</h2>
 
-<p>A &ldquo;stage&rdquo; is the fundamental unit of computation in Martian, and is composed with other stages into Martian pipelines, which are directed, acyclic graphs of stages.</p>
+<p>A <strong>stage</strong> is the fundamental unit of computation in Martian, and is composed with other stages into Martian <strong>pipelines</strong>, which are directed, acyclic graphs of stages.</p>
 
 <p>Martian stages can be <a href="../writing-stages/">implemented in any language</a>, and each stage can even be implemented in a different language, if desired. Martian manages the flow of data from the outputs of one stage to the inputs of one or more downstream stages in the graph. Martian provides a well-structured, typed, validated, JSON-based mechanism for exchanging data between stages in a language-independent manner.</p>
 
@@ -357,7 +357,7 @@ stage SORT(
 <ol>
 <li><strong>Input Parameters -</strong> A stage can declare one or more typed <code>in</code> parameters, to which upstream stages&rsquo; outputs are bound. At runtime, Martian passes arguments into the stage code.</li>
 <li><strong>Output Parameters -</strong> Martian also provides a structured way for stage code to return typed <code>out</code> values, which are passed by Martian to downstream stages.</li>
-<li><strong>Stage Code -</strong> The <code>src</code> parameter specifies the executable code that implements the functionality of the stage. The type of this parameter indicates the language of that code. For example, a stage could refer to a Python module, a C, C++, Go, or Rust binary, or a shell script, just to name a few possibilities. There is no required or preferred implementation language in Martian. The third element of this parameter is a language-dependent string that Martian uses to locate the code. In this example, <code>stages/sort</code> is a folder that exists relative to the <code>MROPATH</code> environment variable, and contains a valid Python module with a <code>__init__.py</code>.</li>
+<li><strong>Stage Code -</strong> The <code>src</code> parameter specifies the executable code that implements the functionality of the stage. The type of this parameter indicates the language of that code. For example, a stage could refer to a Python module, a C, C++, Go, or Rust binary, or a shell script, just to name a few possibilities. There is no required or preferred implementation language in Martian. The third element of this parameter is a language-dependent string that Martian uses to locate the code. In this example, <code>stages/sort</code> is a directory that exists relative to the <code>MROPATH</code> environment variable, and contains a valid Python module with a <code>__init__.py</code>.</li>
 </ol>
 
 <h2 id="pipelines">Pipelines</h2>
@@ -452,6 +452,33 @@ pipeline DUPLICATE_FINDER(
 
 <p>By convention, the <code>@include</code> directive allows the developer to organize code into header files, although there is no formal distinction between header and non-header MRO files in Martian. Typically, stages that are logically grouped together are declared in one file, for example <code>_sorting_stages.mro</code>, and that file would be included into another MRO file that declares a pipeline that calls these included stages. By convention, MRO files containing stage declarations should be named with the suffix <code>_stages</code>.</p>
 
+<h3 id="martian-project-directory-structure">Martian Project Directory Structure</h3>
+
+<p>To give you an idea of how a Martian project looks in practice, here&rsquo;s an example:</p>
+
+<pre><code>martian_project/
+    lib/
+        go/
+            bin/
+                hello_go
+            src/
+                hello_go.go
+        rust/
+            Cargo.lock
+            Cargo.toml
+            bin/
+                hello_rust
+            src/
+                hello_rust.rs
+    mro/
+        _hello_stages.mro
+        hello.mro
+        stages/
+            hello/
+                hello_py/
+                    __init__.py
+</code></pre>
+
 <h2 id="formatting-code">Formatting Code</h2>
 
 <p>Martian includes a canonical code formatting utility called <code>mrf</code>. It parses your MRO code into its abstract syntax tree and re-emits the code with canonical whitespacing. In particular, <code>mrf</code> performs intelligent column-wise alignment of parameter fields so that this:</p>
@@ -529,7 +556,7 @@ src py &quot;stages/sort&quot;,)
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://martian-lang.github.io/martian-docs/" title="What is Martian?">
+      <a href="https://martian-lang.github.io/martian-docs/getting-started/" title="Getting Started">
         <span class="direction">
           Previous
         </span>
@@ -539,7 +566,7 @@ src py &quot;stages/sort&quot;,)
           </div>
           <div class="stretch">
             <div class="title">
-              What is Martian?
+              Getting Started
             </div>
           </div>
         </div>
@@ -549,14 +576,14 @@ src py &quot;stages/sort&quot;,)
 
   <div class="next">
   
-      <a href="https://martian-lang.github.io/martian-docs/writing-stages/" title="Writing Stages">
+      <a href="https://martian-lang.github.io/martian-docs/running-pipelines/" title="Running Pipelines">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Writing Stages
+              Running Pipelines
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -636,7 +663,7 @@ src py &quot;stages/sort&quot;,)
 
     
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>

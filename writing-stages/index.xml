@@ -6,7 +6,7 @@
     <description>Recent content in Writing-stages on Martian</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 May 2017 17:53:15 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 01 Aug 2016 17:53:15 -0700</lastBuildDate>
     
 	<atom:link href="https://martian-lang.github.io/martian-docs/writing-stages/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,11 +14,12 @@
     <item>
       <title>Writing Stages</title>
       <link>https://martian-lang.github.io/martian-docs/writing-stages/</link>
-      <pubDate>Sun, 21 May 2017 17:53:15 -0700</pubDate>
+      <pubDate>Mon, 01 Aug 2016 17:53:15 -0700</pubDate>
       
       <guid>https://martian-lang.github.io/martian-docs/writing-stages/</guid>
-      <description> [ WIP ]
-Martian Adapter Interpreted Languages Python Compiled Languages Rust Go Shell Scripts Other Languages How to Write an Adapter </description>
+      <description>Overview Martian supports writing pipeline stages in virtually any language. The only requirement is that the language support JSON, which is nearly universal.
+A Martian stage is an executable, either interpreted or compiled, that takes four command-line arguments as follows:
+$ stage_executable &amp;lt;type&amp;gt; &amp;lt;metadata_path&amp;gt; &amp;lt;files_path&amp;gt; &amp;lt;journal_prefix&amp;gt;  The type argument is one of split, join, or main (the main body of the stage). The stage executable should switch on that type and provide implementations for each.</description>
     </item>
     
   </channel>
