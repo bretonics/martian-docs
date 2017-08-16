@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Getting-starteds on Martian</title>
-    <link>https://martian-lang.github.io/martian-docs/getting-started/</link>
+    <link>http://martian-lang.org/getting-started/</link>
     <description>Recent content in Getting-starteds on Martian</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 01 Nov 2016 17:53:15 -0700</lastBuildDate>
     
-	<atom:link href="https://martian-lang.github.io/martian-docs/getting-started/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://martian-lang.org/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Getting Started</title>
-      <link>https://martian-lang.github.io/martian-docs/getting-started/</link>
+      <link>http://martian-lang.org/getting-started/</link>
       <pubDate>Tue, 01 Nov 2016 17:53:15 -0700</pubDate>
       
-      <guid>https://martian-lang.github.io/martian-docs/getting-started/</guid>
+      <guid>http://martian-lang.org/getting-started/</guid>
       <description>Installing Martian Official binary distributions of the Martian toolchain are available for Linux, macOS and Windows:
    Download OS Arch SHA256     martian-2.3.0-rc0.1-linux-amd64.tar.gz Linux x86-64    martian-2.3.0-rc0.1-darwin-amd64.tar.gz macOS x86-64    Coming soon Windows x86-64     Building from Source Prerequisites  Go 1.8 or higher is required to build Martian. The Python adapter for wrapping stage code requires Python 2.</description>
     </item>
