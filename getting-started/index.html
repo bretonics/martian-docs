@@ -350,14 +350,14 @@
 
 <tbody>
 <tr>
-<td><a href="-">martian-2.2.0-linux-amd64.tar.gz</a></td>
+<td><a href="https://github.com/martian-lang/martian/releases/download/v2.3.0-rc0.1/martian-v2.3.0-rc0.1-linux-x86_64.tar.gz">martian-2.3.0-rc0.1-linux-amd64.tar.gz</a></td>
 <td>Linux</td>
 <td>x86-64</td>
 <td></td>
 </tr>
 
 <tr>
-<td><a href="-">martian-2.2.0-darwin-amd64.tar.gz</a></td>
+<td><a href="-">martian-2.3.0-rc0.1-darwin-amd64.tar.gz</a></td>
 <td>macOS</td>
 <td>x86-64</td>
 <td></td>
@@ -374,20 +374,34 @@
 
 <h2 id="building-from-source">Building from Source</h2>
 
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+<li><a href="https://golang.org">Go</a> 1.8 or higher is required to build Martian.</li>
+<li>The Python adapter for wrapping stage code requires Python 2.7.</li>
+<li>To build the user interface, <a href="https://nodejs.org">Node</a> 6 or higher is required, along with NPM.</li>
+</ul>
+
+<h3 id="building-the-source">Building the source</h3>
+
 <p>To build the Martian toolchain from source, clone the <a href="https://github.com/martian-lang/martian">Martian GitHub repository</a>, run <code>make all</code>, and the compiled binaries will be generated in <code>bin/</code>.</p>
 
 <pre><code>$ git clone --recursive https://github.com/martian-lang/martian.git
 $ cd martian
 $ make all
 $ ls bin
-mrc         mrp         mrf         mrs
+mrc  mrf  mrg  mrjob  mrp  mrs  mrstat
 </code></pre>
+
+<p>To test that everything is working, <code>make longtests</code> runs a few simple test pipelines
+and verifies that their output is correct, including test that pipeline failures are
+handled correctly.</p>
 
 <h2 id="environment-setup">Environment Setup</h2>
 
 <h3 id="martian-executables">Martian Executables</h3>
 
-<p>The Martian toolchain comprises four core executables:</p>
+<p>The Martian toolchain comprises five core executables:</p>
 
 <table>
 <thead>
@@ -422,6 +436,12 @@ mrc         mrp         mrf         mrs
 <td>Stage Runtime</td>
 <td>Executes an individual Martian pipeline stage</td>
 </tr>
+
+<tr>
+<td><code>mrjob</code></td>
+<td>Stage wrapper</td>
+<td>Wraps user stage code, ensuring it obeys the contracts <code>mrp</code> or <code>mrs</code> expect.</td>
+</tr>
 </tbody>
 </table>
 
@@ -429,7 +449,7 @@ mrc         mrp         mrf         mrs
 
 <pre><code>$ export PATH=$PATH:/home/user/git/martian/bin
 $ mrc --version
-2.2.0
+v2.3.0-rc0.1
 </code></pre>
 
 <h3 id="martian-project-path-mropath">Martian Project Path – MROPATH</h3>
@@ -441,17 +461,18 @@ $ mrc --version
 <p>To give you an idea of how a Martian project looks in practice, here&rsquo;s an example:</p>
 
 <pre><code>martian_project/
+    bin/
+        hello_go
+        hello_rust
     lib/
         go/
-            bin/
-                hello_go
+            vendor/github.com/martian-lang/martian
+                src/martian/adapter/adapter.go
             src/
                 hello_go.go
         rust/
             Cargo.lock
             Cargo.toml
-            bin/
-                hello_rust
             src/
                 hello_rust.rs
     mro/

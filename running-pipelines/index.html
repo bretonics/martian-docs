@@ -356,7 +356,11 @@ call DUPLICATE_FINDER(
 <pre><code>$ mrp &lt;invocation_mro&gt; &lt;pipestance_id&gt;
 </code></pre>
 
-<p>To start a run, provide an invocation MRO file, plus a unique <strong>pipestance ID</strong>, comprising only numbers, letters, dashes, and underscores. This ID will be the name of the directory containing the pipestance. When running a pipeline multiple times, choose a different pipestance ID for each run.</p>
+<p>To start a run, provide an invocation MRO file, plus a unique
+<strong>pipestance ID</strong>, comprising only numbers, letters, dashes, and underscores.
+This ID will be the name of the directory containing the pipestance, relative
+to the current working directory. When running a pipeline multiple times,
+choose a different pipestance ID for each run.</p>
 
 <p><code>mrp</code> features a number of command-line options, which are documented in <a href="../advanced-features">Advanced Features</a>.</p>
 
@@ -391,7 +395,25 @@ Running preflight checks (please wait)...
 
 <h2 id="restarting">Restarting</h2>
 
-<p>When a pipestance fails, it can be restarted by running <code>mrp</code> with the same arguments as before. <code>mrp</code> will identify the failed stages, and reset them to a clean state so that they can run again. Stages that have already completed successfully will not be reset or re-run.</p>
+<p>When a pipestance fails, it can be restarted by running <code>mrp</code> with the same
+arguments as before. <code>mrp</code> will identify the failed stages, and reset them to
+a clean state so that they can run again. Stages that have already completed
+successfully will not be reset or re-run.  <code>mrp</code> attempts to verify that no
+other instance of <code>mrp</code> is currently running that pipestance, and that
+other settings are compatible with the previous run.  Normally retrying will
+only re-run failed chunks.  If the <code>MRO_FULLSTAGERESET</code> environment variable
+is non-empty, the entire failed stage will be reset.</p>
+
+<p>Stages which failed with error messages that match regular expressions defined
+in <code>martian/jobmanagers/retry.json</code> may be retried automatically.  <code>mrp</code> will
+restart itself in such circumstances a number of times configured either from
+the command line or in <code>retry.json</code> giving up.  This is useful for error
+types which are expected to be transient, such as receiving a signal from the
+operating system.</p>
+
+<p>If <code>mrp</code> is restarted with the <code>--inspect</code> flag set, it should attempt to read
+the pipestance in &ldquo;read only&rdquo; mode.  In combination with <code>--noexit</code> this can be
+used to open up a user interface for an old pipestance.</p>
 
 
 			<aside class="copyright" role="note">

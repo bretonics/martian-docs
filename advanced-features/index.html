@@ -345,17 +345,211 @@
 
 <h2 id="parallelization">Parallelization</h2>
 
-<p>[ WIP ]</p>
+<p>Subject to resource constraints, martian parallelizes work by breaking
+pipeline logic into chunks and parallelizing them in two ways.  First,
+stages can run in parallel if they don&rsquo;t depend on each other&rsquo;s outputs.
+Second, individual stages may split themselves into several chunks.</p>
+
+<p>Stages which split are specified in mro as, for example,</p>
+
+<pre><code>stage SUM_SQUARES(
+    in  float[] values,
+    out float   sum,
+    src comp    &quot;sum_squares&quot;,
+) split using (
+    in  float   value,
+)
+</code></pre>
+
+<p>In this example, the stage takes an array of &ldquo;values&rdquo; as inputs.  The &ldquo;split&rdquo;
+function (see <a href="../writing-stages/#Split Interface">writing stages</a>) determines
+how to distribute the input data across chunks, giving a &ldquo;value&rdquo; to each,
+as well as potentially setting thread and memory requirements for each chunk
+and the join.  The after the chunks run, the join phase aggregates the output
+from all of the chunks into the single output of the stage.</p>
 
 <h2 id="job-management">Job Management</h2>
 
+<p>Broadly speaking, martian has two ways to run stage jobs.</p>
+
 <h3 id="local-mode">Local Mode</h3>
+
+<p>In local mode, stage jobs run as a child process of <code>mrp</code> on the same machine.
+Even in cluster mode, stages may be executed in local mode if the mro invokes
+them with <code>call local</code>.  Several options to <code>mrp</code> control job scheduling
+behavior for local jobs</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Effect</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>&ndash;localcores=NUM</td>
+<td>Specifies the number of threads worth of work <code>mrp</code> should schedule simultaneously.  The default is the number of logical cores on the machine.</td>
+</tr>
+
+<tr>
+<td>&ndash;localmem=NUM</td>
+<td>Specifies the amount of memory, in gigabytes, which <code>mrp</code> will allow to be reserved by jobs running in parallel.  The default is 90% of the system&rsquo;s total memory.</td>
+</tr>
+
+<tr>
+<td>&ndash;limit-loadavg</td>
+<td>Instructs <code>mrp</code> to monitor the system <a href="https://en.wikipedia.org/wiki/Load_(computing)">loadavg</a>, and avoid starting new jobs if the difference between the number of logical cores on the system and the current one-minute load average is less than the number of threads requested by a job.  This may be useful for throttling the start of new jobs on shared systems which are heavily loaded, especially shared systems which do not enforce any kind of quota.  However it should be noted that CPU load tends to fluctuate, so in many cases this only delays the job start until the next time the load drops temporarily.</td>
+</tr>
+</tbody>
+</table>
 
 <h3 id="cluster-mode">Cluster Mode</h3>
 
+<p>Larger research groups often have infrastructure for shared, distributed
+workloads, such as <a href="https://en.wikipedia.org/wiki/Oracle_Grid_Engine">SGE</a>,
+<a href="https://slurm.schedmd.com/">slurm</a>,
+or <a href="https://en.wikipedia.org/wiki/Platform_LSF">LSF</a>.  Martian supports
+distributing stage chunks on such platforms through a flexible, extensible
+interface.</p>
+
+<p>If <code>mrp</code> is started with <code>--jobmode=MODE</code> and <code>MODE</code> is not &ldquo;<code>local</code>&rdquo;, it
+looks in its <code>jobmanagers/config.json</code> file for a key in the <code>jobmodes</code> element
+corresponding to <code>MODE</code>.  In that object, the following values are used to
+configure the job:
+|Key|Effect|
+|&mdash;|&mdash;|
+|<code>cmd</code>|The command (executable) used to submit batch work to the cluster manager.|
+|<code>args</code>|Additional arguments to pass to the executable.  Ideally the batch submit executable has a mode to return just the &ldquo;job ID&rdquo; on standard output, without any other formatting.  If an argument is required to enable this mode, it should be added there, as well as any other fixed arguments which are required.|
+|<code>queue_query</code>|A script, which <code>mrp</code> will look for in its <code>jobmanagers</code> directory, which accepts a newline-separated list of job IDs on standard input and returns on standard output the newline-separated list of job IDs which are known to the job manager to be still queued or running.  This is used for martian to detect if a job failed without having a chance to write its metadata files, for example if the job template incorrectly specified the environment.|
+|<code>queue_query_grace_secs</code>|If <code>queue_query</code> was specified, this determines the minimum time <code>mrp</code> will wait, after the <code>queue_query</code> command determines that a job is no longer running, before it will declare the job dead.  In many cases, due to the way filesystems cache metadata, the completion notification files which jobs produce may not be visible from where <code>mrp</code> is running at the same time that the job manager reports the job being complete, especially when the filesystem is under heavy load.  The grace period prevents succeeded jobs from being declared failed.|
+|<code>env</code>|Specifies environment variables which are required to be set in this job mode.|</p>
+
+<p><code>mrp</code> will execute the specified <code>cmd</code> with the specified <code>args</code> and pipe a job
+script to its standard input (see <a href="#Templates">Templates</a> below for how the job
+script is generated).  If the command&rsquo;s standard output consists of a string
+with no newlines or whitespace, it is interpreted as a job ID and recorded with
+the job, to potentially be used later with the <code>queue_query</code> script.</p>
+
 <h3 id="templates">Templates</h3>
 
-<h3 id="throttling">Throttling</h3>
+<p>In addition to the information in the <code>config.json</code> file, <code>mrp</code> looks for a
+file in the <code>jobmanagers</code> directory named <code>MODE.template</code> for the specified
+<code>MODE</code>.  <code>mrp</code> does string substitutions on the content of the file to produce
+the job script.  The string substitutions are of the form <code>__MRO_VALUE__</code>,
+where <code>VALUE</code> <a href="https://github.com/martian-lang/martian/blob/6edf70a6f70d86a2ae08169356f3b1b35ffc0818/src/martian/core/jobmanager.go#L549">is one of</a></p>
+
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>JOB_NAME</code></td>
+<td>The fully qualified stage/chunk name.</td>
+</tr>
+
+<tr>
+<td><code>THREADS</code></td>
+<td>The number of threads requested for the job.</td>
+</tr>
+
+<tr>
+<td><code>STDOUT</code>/<code>STDERR</code></td>
+<td>The absolute paths to the expected destination location for the standard output/error files.</td>
+</tr>
+
+<tr>
+<td><code>JOB_WORKDIR</code></td>
+<td>The working directory in which the stage code is expected to.</td>
+</tr>
+
+<tr>
+<td><code>CMD</code></td>
+<td>The actual command line to execute.</td>
+</tr>
+
+<tr>
+<td><code>MEM_GB</code></td>
+<td>The amount of memory, in GB, which the job is expected to use.  Additionally, <code>MEM_MB</code>,<code>MEM_KB</code>, and <code>MEM_B</code> provide the value in other units if required.</td>
+</tr>
+
+<tr>
+<td><code>MEM_GB_PER_THREAD</code></td>
+<td>Equal to <code>MEM_GB</code> divided by <code>THREADS</code>.  Similarly for <code>MB</code>, <code>KB</code>, and <code>B</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="cluster-mode-command-line-options">Cluster mode command line options</h3>
+
+<p>There are several options for throttling how <code>mrp</code> uses the cluster
+job manager.</p>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Effect</th>
+<th>Default</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>--maxjobs</code></td>
+<td>Limit the number of jobs queued or pending on the cluster simultaneously.  0 us treated as unlimited.</td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>--jobinterval</code></td>
+<td>Limit the rate at which jobs are submitted to the cluster.</td>
+<td></td>
+</tr>
+
+<tr>
+<td><code>--mempercore</code></td>
+<td>For clusters which do not manage memory reservations, specifies the amount of memory <code>mrp</code> should expect to be available for each core.  If this number is less than the cores to memory ratio of a job, extra threads will be reserved in order to ensure that the job gets enough memory.  A very high value will effectively be ignored.  A low value will result in many wasted CPUs.</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="additional-job-management-settings">Additional job management settings</h3>
+
+<p>There are a few additional options available in the <code>jobmanagers/config.json</code>
+file which apply in both cluster and local modes, under the <code>settings</code> key.</p>
+
+<p>Several popular third-party libraries use environment variables to control
+the number of threads they parallize jobs over, for example <code>OMP_NUM_THREADS</code>
+for OpenMP.  The <code>thread_envs</code> key specifies a list of environment variables
+which should be set to be equal to the job thread reservation.  These are
+applied in cluster mode, and in local mode if the number of threads is
+constrained.  In local mode without a constraint on mrp&rsquo;s total thread count,
+it is not used, as it&rsquo;s expected that the user is not sharing the machine with
+other users, so such a constraint on internal parallelism is just potentially
+idle CPU cycles.</p>
+
+<p>Additionally, for jobs which do not specify their thread or memory
+requirements, the <code>threads_per_job</code> and <code>memGB_per_job</code> keys specify default
+values.</p>
+
+<h2 id="debugging-options">Debugging options</h2>
+
+<p>The <code>--debug</code> option to mrp causes it to log additional information which may
+be helpful for debugging.</p>
+
+<p>For debugging stage code, the <code>--stackvars</code> flag sets an option in the
+<code>jobinfo</code> file given to stage code.  For the python adapter, this flag causes
+it to dump all local variables from every stack frame on failure.</p>
+
+<h2 id="overrides">Overrides</h2>
 
 <h2 id="preflight-checks">Preflight Checks</h2>
 

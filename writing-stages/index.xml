@@ -17,9 +17,9 @@
       <pubDate>Mon, 01 Aug 2016 17:53:15 -0700</pubDate>
       
       <guid>https://martian-lang.github.io/martian-docs/writing-stages/</guid>
-      <description>Overview Martian supports writing pipeline stages in virtually any language. The only requirement is that the language support JSON, which is nearly universal.
-A Martian stage is an executable, either interpreted or compiled, that takes four command-line arguments as follows:
-$ stage_executable &amp;lt;type&amp;gt; &amp;lt;metadata_path&amp;gt; &amp;lt;files_path&amp;gt; &amp;lt;journal_prefix&amp;gt;  The type argument is one of split, join, or main (the main body of the stage). The stage executable should switch on that type and provide implementations for each.</description>
+      <description>Overview Martian supports writing pipeline stages in virtually any language. The only requirement for pipeline executables is that they be able to write JSON to files.
+A Martian stage is an executable, either interpreted or compiled, that takes at least four command-line arguments as follows:
+$ stage_executable [args] &amp;lt;type&amp;gt; &amp;lt;metadata_path&amp;gt; &amp;lt;files_path&amp;gt; &amp;lt;journal_prefix&amp;gt;  In most cases the interpretation of the arguments is handled by a language-specific adapter. The type argument is one of split, join, or main (main is run for chunk phases, or for stages which do not split ).</description>
     </item>
     
   </channel>
