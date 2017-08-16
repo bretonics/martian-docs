@@ -81,7 +81,7 @@ $ stage_executable [args] &amp;lt;type&amp;gt; &amp;lt;metadata_path&amp;gt; &am
       
       <guid>https://martian-lang.github.io/martian-docs/advanced-features/</guid>
       <description>Martian supports a number of advanced features to provide:
- Performance and resource efficiency that scales from single servers to large high-performance compute clusters Early error detection Data storage efficiency Loosely-coupled integration with other systems  Parallelization Subject to resource constraints, martian parallelizes work by breaking pipeline logic into chunks and parallelizing them in two ways. First, stages can run in parallel if they don&amp;rsquo;t depend on each other&amp;rsquo;s outputs.</description>
+ Performance and resource efficiency that scales from single servers to large high-performance compute clusters Early error detection Data storage efficiency Loosely-coupled integration with other systems  Parallelization Subject to resource constraints, Martian parallelizes work by breaking pipeline logic into chunks and parallelizing them in two ways. First, stages can run in parallel if they don&amp;rsquo;t depend on each other&amp;rsquo;s outputs.</description>
     </item>
     
     <item>
@@ -90,9 +90,9 @@ $ stage_executable [args] &amp;lt;type&amp;gt; &amp;lt;metadata_path&amp;gt; &am
       <pubDate>Wed, 01 Jun 2016 17:53:15 -0700</pubDate>
       
       <guid>https://martian-lang.github.io/martian-docs/language-details/</guid>
-      <description>Symbols and Scope Symbols in Martian are identifiers for stages, pipelines, and parameters. They may comprise uppercase and lowercase letters, numeric digits, and underscores. A symbol may not begin with a numeric digit, which is reserved for number literals. The Martian lexer&amp;rsquo;s regular expression for symbols is [a-zA-Z_][a-zA-Z0-9_]*\\b.
-Martian defines two scopes within which symbol names must be unique:
- Within the scope of one pipeline invocation, which encompasses all recursively included MRO files, no two stages or pipelines may share the same name.</description>
+      <description>Tokens and Grammar The Martian language&amp;rsquo;s tokens are defined by regular expressions in its lexical scanner.
+The Martian syntax is specified as a YACC grammar.
+Symbols and Scope Symbols in Martian are identifiers for stages, pipelines, and parameters. They may comprise uppercase and lowercase letters, numeric digits, and underscores. A symbol may not begin with a numeric digit, which is reserved for number literals. The Martian lexer&amp;rsquo;s regular expression for symbols is [a-zA-Z_][a-zA-Z0-9_]*\\b.</description>
     </item>
     
     <item>

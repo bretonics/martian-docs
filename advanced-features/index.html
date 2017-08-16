@@ -345,7 +345,7 @@
 
 <h2 id="parallelization">Parallelization</h2>
 
-<p>Subject to resource constraints, martian parallelizes work by breaking
+<p>Subject to resource constraints, Martian parallelizes work by breaking
 pipeline logic into chunks and parallelizing them in two ways.  First,
 stages can run in parallel if they don&rsquo;t depend on each other&rsquo;s outputs.
 Second, individual stages may split themselves into several chunks.</p>
@@ -370,7 +370,7 @@ from all of the chunks into the single output of the stage.</p>
 
 <h2 id="job-management">Job Management</h2>
 
-<p>Broadly speaking, martian has two ways to run stage jobs.</p>
+<p>Broadly speaking, Martian has two ways to run stage jobs: Local Mode and Cluster Mode.</p>
 
 <h3 id="local-mode">Local Mode</h3>
 
@@ -389,17 +389,17 @@ behavior for local jobs</p>
 
 <tbody>
 <tr>
-<td>&ndash;localcores=NUM</td>
+<td><nobr><code>--localcores=NUM</code></nobr></td>
 <td>Specifies the number of threads worth of work <code>mrp</code> should schedule simultaneously.  The default is the number of logical cores on the machine.</td>
 </tr>
 
 <tr>
-<td>&ndash;localmem=NUM</td>
+<td><nobr><code>--localmem=NUM</code></nobr></td>
 <td>Specifies the amount of memory, in gigabytes, which <code>mrp</code> will allow to be reserved by jobs running in parallel.  The default is 90% of the system&rsquo;s total memory.</td>
 </tr>
 
 <tr>
-<td>&ndash;limit-loadavg</td>
+<td><nobr><code>--limit-loadavg</code></nobr></td>
 <td>Instructs <code>mrp</code> to monitor the system <a href="https://en.wikipedia.org/wiki/Load_(computing)">loadavg</a>, and avoid starting new jobs if the difference between the number of logical cores on the system and the current one-minute load average is less than the number of threads requested by a job.  This may be useful for throttling the start of new jobs on shared systems which are heavily loaded, especially shared systems which do not enforce any kind of quota.  However it should be noted that CPU load tends to fluctuate, so in many cases this only delays the job start until the next time the load drops temporarily.</td>
 </tr>
 </tbody>
@@ -417,14 +417,43 @@ interface.</p>
 <p>If <code>mrp</code> is started with <code>--jobmode=MODE</code> and <code>MODE</code> is not &ldquo;<code>local</code>&rdquo;, it
 looks in its <code>jobmanagers/config.json</code> file for a key in the <code>jobmodes</code> element
 corresponding to <code>MODE</code>.  In that object, the following values are used to
-configure the job:
-|Key|Effect|
-|&mdash;|&mdash;|
-|<code>cmd</code>|The command (executable) used to submit batch work to the cluster manager.|
-|<code>args</code>|Additional arguments to pass to the executable.  Ideally the batch submit executable has a mode to return just the &ldquo;job ID&rdquo; on standard output, without any other formatting.  If an argument is required to enable this mode, it should be added there, as well as any other fixed arguments which are required.|
-|<code>queue_query</code>|A script, which <code>mrp</code> will look for in its <code>jobmanagers</code> directory, which accepts a newline-separated list of job IDs on standard input and returns on standard output the newline-separated list of job IDs which are known to the job manager to be still queued or running.  This is used for martian to detect if a job failed without having a chance to write its metadata files, for example if the job template incorrectly specified the environment.|
-|<code>queue_query_grace_secs</code>|If <code>queue_query</code> was specified, this determines the minimum time <code>mrp</code> will wait, after the <code>queue_query</code> command determines that a job is no longer running, before it will declare the job dead.  In many cases, due to the way filesystems cache metadata, the completion notification files which jobs produce may not be visible from where <code>mrp</code> is running at the same time that the job manager reports the job being complete, especially when the filesystem is under heavy load.  The grace period prevents succeeded jobs from being declared failed.|
-|<code>env</code>|Specifies environment variables which are required to be set in this job mode.|</p>
+configure the job:</p>
+
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Effect</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>cmd</code></td>
+<td>The command (executable) used to submit batch work to the cluster manager.</td>
+</tr>
+
+<tr>
+<td><code>args</code></td>
+<td>Additional arguments to pass to the executable.  Ideally the batch submit executable has a mode to return just the &ldquo;job ID&rdquo; on standard output, without any other formatting.  If an argument is required to enable this mode, it should be added there, as well as any other fixed arguments which are required.</td>
+</tr>
+
+<tr>
+<td><code>queue_query</code></td>
+<td>A script, which <code>mrp</code> will look for in its <code>jobmanagers</code> directory, which accepts a newline-separated list of job IDs on standard input and returns on standard output the newline-separated list of job IDs which are known to the job manager to be still queued or running.  This is used for Martian to detect if a job failed without having a chance to write its metadata files, for example if the job template incorrectly specified the environment.</td>
+</tr>
+
+<tr>
+<td><code>queue_query_grace_secs</code></td>
+<td>If <code>queue_query</code> was specified, this determines the minimum time <code>mrp</code> will wait, after the <code>queue_query</code> command determines that a job is no longer running, before it will declare the job dead.  In many cases, due to the way filesystems cache metadata, the completion notification files which jobs produce may not be visible from where <code>mrp</code> is running at the same time that the job manager reports the job being complete, especially when the filesystem is under heavy load.  The grace period prevents succeeded jobs from being declared failed.</td>
+</tr>
+
+<tr>
+<td><code>env</code></td>
+<td>Specifies environment variables which are required to be set in this job mode.</td>
+</tr>
+</tbody>
+</table>
 
 <p><code>mrp</code> will execute the specified <code>cmd</code> with the specified <code>args</code> and pipe a job
 script to its standard input (see <a href="#Templates">Templates</a> below for how the job
@@ -502,19 +531,19 @@ job manager.</p>
 
 <tbody>
 <tr>
-<td><code>--maxjobs</code></td>
+<td><nobr><code>--maxjobs</code></nobr></td>
 <td>Limit the number of jobs queued or pending on the cluster simultaneously.  0 us treated as unlimited.</td>
 <td></td>
 </tr>
 
 <tr>
-<td><code>--jobinterval</code></td>
+<td><nobr><code>--jobinterval</code></nobr></td>
 <td>Limit the rate at which jobs are submitted to the cluster.</td>
 <td></td>
 </tr>
 
 <tr>
-<td><code>--mempercore</code></td>
+<td><nobr><code>--mempercore</code></nobr></td>
 <td>For clusters which do not manage memory reservations, specifies the amount of memory <code>mrp</code> should expect to be available for each core.  If this number is less than the cores to memory ratio of a job, extra threads will be reserved in order to ensure that the job gets enough memory.  A very high value will effectively be ignored.  A low value will result in many wasted CPUs.</td>
 <td>none</td>
 </tr>
