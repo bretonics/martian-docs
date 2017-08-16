@@ -378,12 +378,33 @@ the language of that code. For example, a stage could refer to a Python module,
 or a C, C++, Go, or Rust binary, just to name a few possibilities.</li>
 </ol>
 
-<p>Currently the there are 3 values supported for the type parameter:
-|<code>src</code> type|Stage type|
-|&mdash;|&mdash;|
-|<code>py</code>|Python stage code.  This is launched through an adapter process which provides useful utility methods for interacting with the pipeline runner.|
-|<code>comp</code>|Executable code intended to run as a child process for <code>mrjob</code>.  This is the preferred way to handle compiled code.|
-|<code>exe</code>|(deprecated) Executable code intended to be run directly.  Such code must manage the interface with <code>mrp</code> itself.|</p>
+<p>Currently the there are 3 values supported for the type parameter:</p>
+
+<table>
+<thead>
+<tr>
+<th><code>src</code> type</th>
+<th>Stage type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>py</code></td>
+<td>Python stage code.  This is launched through an adapter process which provides useful utility methods for interacting with the pipeline runner.</td>
+</tr>
+
+<tr>
+<td><code>comp</code></td>
+<td>Executable code intended to run as a child process for <code>mrjob</code>.  This is the preferred way to handle compiled code.</td>
+</tr>
+
+<tr>
+<td><code>exe</code></td>
+<td>(deprecated) Executable code intended to be run directly.  Such code must manage the interface with <code>mrp</code> itself.</td>
+</tr>
+</tbody>
+</table>
 
 <p>Adding support for additional languages is
 <a href="https://github.com/martian-lang/martian/blob/master/adapters/README.md">fairly straightforward</a>
