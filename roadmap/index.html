@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Getting Started - Martian</title>
+    <title>Development Roadmap - Martian</title>
     <meta name="generator" content="Hugo 0.24.1" />
 
     
     <meta name="description" content="A material design theme for documentations.">
     
-    <link rel="canonical" href="http://martian-lang.org/getting-started/">
+    <link rel="canonical" href="http://martian-lang.org/roadmap/">
     
     <meta name="author" content="Digitalcraftsman">
     
 
-    <meta property="og:url" content="http://martian-lang.org/getting-started/">
+    <meta property="og:url" content="http://martian-lang.org/roadmap/">
     <meta property="og:title" content="Martian">
     <meta property="og:image" content="http://martian-lang.org/images/logo.png">
     <meta name="apple-mobile-web-app-title" content="Martian">
@@ -191,14 +191,11 @@
 
 
 
-<a class="current" title="Getting Started" href="http://martian-lang.org/getting-started/">
+<a  title="Getting Started" href="http://martian-lang.org/getting-started/">
 	
 	Getting Started
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
 
   
@@ -348,159 +345,41 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Getting Started </h1>
+			<h1>Development Roadmap </h1>
 
 			
 
-<h2 id="installing-martian">Installing Martian</h2>
+<h1 id="martian-development-roadmap">Martian Development Roadmap</h1>
 
-<p>Official binary distributions of the Martian toolchain are available for Linux, macOS and Windows:</p>
+<p>All features here refer to notional plans. They are provided only to provide
+visibility into the current priorities of the Martian development team,
+and are subject to change at any time.</p>
 
-<table>
-<thead>
-<tr>
-<th>Download</th>
-<th>OS</th>
-<th>Arch</th>
-<th>SHA256</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><a href="https://github.com/martian-lang/martian/releases/download/v2.3.0-rc0.1/martian-v2.3.0-rc0.1-linux-x86_64.tar.gz">martian-2.3.0-rc0.1-linux-amd64.tar.gz</a></td>
-<td>Linux</td>
-<td>x86-64</td>
-<td></td>
-</tr>
-
-<tr>
-<td>Coming soon</td>
-<td>macOS</td>
-<td>x86-64</td>
-<td></td>
-</tr>
-
-<tr>
-<td><a href="https://github.com/martian-lang/martian/blob/master/.github/CONTRIBUTING.md">Please contribute!</a></td>
-<td>Windows</td>
-<td>x86-64</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="building-from-source">Building from Source</h2>
-
-<h3 id="prerequisites">Prerequisites</h3>
+<h2 id="august-2017">August 2017</h2>
 
 <ul>
-<li><a href="https://golang.org">Go</a> 1.8 or higher is required to build Martian.</li>
-<li>The Python adapter for wrapping stage code requires Python 2.7.</li>
-<li>To build the user interface, <a href="https://nodejs.org">Node</a> 6 or higher is required, along with NPM.</li>
+<li>Initial GitHub publication</li>
 </ul>
 
-<h3 id="building-the-source">Building the source</h3>
+<h2 id="q3-2017-2-3-0">Q3 2017 - 2.3.0</h2>
 
-<p>To build the Martian toolchain from source, clone the <a href="https://github.com/martian-lang/martian">Martian GitHub repository</a>, run <code>make all</code>, and the compiled binaries will be generated in <code>bin/</code>.</p>
+<ul>
+<li>Support building on macOS, and running non-pipeline tools.</li>
+<li>Always-on UI port with basic (unencrypted) authentication and a basic command
+line tool for remote administration.</li>
+<li>Support for <code>perf record</code> profiling.</li>
+<li>Some tracking of stage vmem usage.</li>
+<li>Improved local-mode memory management.</li>
+<li>Redesigned adapter API.</li>
+</ul>
 
-<pre><code>$ git clone --recursive https://github.com/martian-lang/martian.git
-$ cd martian
-$ make all
-$ ls bin
-mrc  mrf  mrg  mrjob  mrp  mrs  mrstat
-</code></pre>
+<h2 id="q4-2017-2-4-0">Q4 2017 - 2.4.0</h2>
 
-<p>To test that everything is working, <code>make longtests</code> runs a few simple test pipelines
-and verifies that their output is correct, including test that pipeline failures are
-handled correctly.</p>
-
-<h2 id="environment-setup">Environment Setup</h2>
-
-<h3 id="martian-executables">Martian Executables</h3>
-
-<p>The Martian toolchain comprises five core executables:</p>
-
-<table>
-<thead>
-<tr>
-<th>Executable</th>
-<th>Role</th>
-<th>Details</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>mrc</code></td>
-<td>Compiler/Checker</td>
-<td>Parses and validates Martian code</td>
-</tr>
-
-<tr>
-<td><code>mrf</code></td>
-<td>Formatter</td>
-<td>Canonicalizes Martian code formatting and whitespace</td>
-</tr>
-
-<tr>
-<td><code>mrp</code></td>
-<td>Pipeline Runtime</td>
-<td>Executes a Martian pipeline</td>
-</tr>
-
-<tr>
-<td><code>mrs</code></td>
-<td>Stage Runtime</td>
-<td>Executes an individual Martian pipeline stage</td>
-</tr>
-
-<tr>
-<td><code>mrjob</code></td>
-<td>Stage wrapper</td>
-<td>Wraps user stage code, ensuring it obeys the contracts <code>mrp</code> or <code>mrs</code> expect.</td>
-</tr>
-</tbody>
-</table>
-
-<p>Make these executables available on your <code>PATH</code> and then confirm that you can run them. If you unpacked or cloned Martian into <code>/home/user/git/martian</code>, for example, then:</p>
-
-<pre><code>$ export PATH=$PATH:/home/user/git/martian/bin
-$ mrc --version
-v2.3.0-rc0.1
-</code></pre>
-
-<h3 id="martian-project-path-mropath">Martian Project Path – MROPATH</h3>
-
-<p>The code for a Martian pipeline project typically lives under a single directory. Set <code>MROPATH</code> to this directory to allow the Martian executables to find the project code without the need for absolute paths.</p>
-
-<p>When developing multiple projects, switch between them by changing <code>MROPATH</code>.</p>
-
-<p>To give you an idea of how a Martian project looks in practice, here&rsquo;s an example:</p>
-
-<pre><code>martian_project/
-    bin/
-        hello_go
-        hello_rust
-    lib/
-        go/
-            vendor/github.com/martian-lang/martian
-                src/martian/adapter/adapter.go
-            src/
-                hello_go.go
-        rust/
-            Cargo.lock
-            Cargo.toml
-            src/
-                hello_rust.rs
-    mro/
-        _hello_stages.mro
-        hello.mro
-        stages/
-            hello/
-                hello_py/
-                    __init__.py
-</code></pre>
+<ul>
+<li>Improved resiliency to accidentally resetting stages which are still running.</li>
+<li>More options for remote administration over the UI port.</li>
+<li>(stretch) Improved web interface.</li>
+</ul>
 
 
 			<aside class="copyright" role="note">
@@ -514,7 +393,7 @@ v2.3.0-rc0.1
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="http://martian-lang.org/what-is-martian/" title="What is Martian?">
+      <a href="http://martian-lang.org/writing-stages/" title="Writing Stages">
         <span class="direction">
           Previous
         </span>
@@ -524,7 +403,7 @@ v2.3.0-rc0.1
           </div>
           <div class="stretch">
             <div class="title">
-              What is Martian?
+              Writing Stages
             </div>
           </div>
         </div>
@@ -534,14 +413,14 @@ v2.3.0-rc0.1
 
   <div class="next">
   
-      <a href="http://martian-lang.org/writing-pipelines/" title="Writing Pipelines">
+      <a href="http://martian-lang.org/advanced-features/" title="Advanced Features">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Writing Pipelines
+              Advanced Features
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">

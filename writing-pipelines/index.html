@@ -99,7 +99,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Martian
+        <a href="http://martian-lang.org/">Martian</a>
       </div>
     </div>
 
@@ -110,8 +110,8 @@
       <a href="https://github.com/martian-lang" title="@martian-lang on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
     </div>
     
+
     
-        
   </div>
   <div class="bar search">
     <div class="button button-close" role="button" aria-label="Close">
@@ -155,7 +155,25 @@
 
 
 
-<a  title="What is Martian?" href="http://martian-lang.org/">
+<a  title="Home" href="http://martian-lang.org/">
+	
+	Home
+</a>
+
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
+<a  title="What is Martian?" href="http://martian-lang.org/what-is-martian/">
 	
 	What is Martian?
 </a>
@@ -600,7 +618,7 @@ The following verification steps are performed:</p>
 
 <ul>
 <li><strong>Preprocessing</strong>: All <code>@include</code> directives are recursively evaluated.  Any preprocessing errors, such as a file not found, will stop <code>mrc</code> and be reported.</li>
-<li><strong>Lexing and Parsing</strong>: The MRO code produced by the preprocessor is then lexed and parsed according to the <a href="https://github.com/martian-lang/martian/blob/master/src/martian/core/grammar.y">Martian grammar</a> to produce an in-memory representation of the pipeline called an <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree</a> (AST).  Any syntax errors will stop <code>mrc</code> and be reported.</li>
+<li><strong>Lexing and Parsing</strong>: The MRO code produced by the preprocessor is then lexed and parsed according to the <a href="https://github.com/martian-lang/martian/blob/master/src/martian/syntax/grammar.y">Martian grammar</a> to produce an in-memory representation of the pipeline called an <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree</a> (AST).  Any syntax errors will stop <code>mrc</code> and be reported.</li>
 <li><strong>Semantic Analysis</strong>: The AST produced by the parser abstract syntax tree is then analyzed according a number of semantic rules. Any semantic errors will will be reported.
 
 <ul>

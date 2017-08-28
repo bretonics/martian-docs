@@ -13,10 +13,10 @@
     
     <item>
       <title>What is Martian?</title>
-      <link>http://martian-lang.org/</link>
+      <link>http://martian-lang.org/what-is-martian/</link>
       <pubDate>Thu, 01 Dec 2016 17:53:15 -0700</pubDate>
       
-      <guid>http://martian-lang.org/</guid>
+      <guid>http://martian-lang.org/what-is-martian/</guid>
       <description>Martian is a language and framework for developing and executing complex computational pipelines.
  Designed for simplicity: simple to learn, simple to develop, simple to run, and simple to debug. Allows combination of software components written in any language into a single pipeline. Powerful support for scaling computationally intensive pipelines from standalone machines, to clusters, to cloud. Rich support for managing the full lifecycle of complex, compute and data-intensive pipelines.</description>
     </item>
@@ -28,7 +28,7 @@
       
       <guid>http://martian-lang.org/getting-started/</guid>
       <description>Installing Martian Official binary distributions of the Martian toolchain are available for Linux, macOS and Windows:
-   Download OS Arch SHA256     martian-2.3.0-rc0.1-linux-amd64.tar.gz Linux x86-64    martian-2.3.0-rc0.1-darwin-amd64.tar.gz macOS x86-64    Coming soon Windows x86-64     Building from Source Prerequisites  Go 1.8 or higher is required to build Martian. The Python adapter for wrapping stage code requires Python 2.</description>
+   Download OS Arch SHA256     martian-2.3.0-rc0.1-linux-amd64.tar.gz Linux x86-64    Coming soon macOS x86-64    Please contribute! Windows x86-64     Building from Source Prerequisites  Go 1.8 or higher is required to build Martian. The Python adapter for wrapping stage code requires Python 2.</description>
     </item>
     
     <item>
@@ -72,6 +72,16 @@ All Martian pipestance state is persisted in the filesystem in an intuitive, hum
       <description>Overview Martian supports writing pipeline stages in virtually any language. The only requirement for pipeline executables is that they be able to write JSON to files.
 A Martian stage is an executable, either interpreted or compiled, that takes at least four command-line arguments as follows:
 $ stage_executable [args] &amp;lt;type&amp;gt; &amp;lt;metadata_path&amp;gt; &amp;lt;files_path&amp;gt; &amp;lt;journal_prefix&amp;gt;  In most cases the interpretation of the arguments is handled by a language-specific adapter. The type argument is one of split, join, or main (main is run for chunk phases, or for stages which do not split ).</description>
+    </item>
+    
+    <item>
+      <title>Development Roadmap</title>
+      <link>http://martian-lang.org/roadmap/</link>
+      <pubDate>Fri, 08 Jul 2016 15:53:15 -0700</pubDate>
+      
+      <guid>http://martian-lang.org/roadmap/</guid>
+      <description>Martian Development Roadmap All features here refer to notional plans. They are provided only to provide visibility into the current priorities of the Martian development team, and are subject to change at any time.
+August 2017  Initial GitHub publication  Q3 2017 - 2.3.0  Support building on macOS, and running non-pipeline tools. Always-on UI port with basic (unencrypted) authentication and a basic command line tool for remote administration.</description>
     </item>
     
     <item>
