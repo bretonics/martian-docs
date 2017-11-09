@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
     <title>Getting Started - Martian</title>
-    <meta name="generator" content="Hugo 0.20.7" />
+    <meta name="generator" content="Hugo 0.30.2" />
 
     
     <meta name="description" content="A material design theme for documentations.">
@@ -354,7 +354,8 @@
 
 <h2 id="installing-martian">Installing Martian</h2>
 
-<p>Official binary distributions of the Martian toolchain are available for Linux, macOS and Windows:</p>
+<p>Official binary distributions of the Martian toolchain are available for Linux.
+We hope to have MacOS and Windows support soon.</p>
 
 <table>
 <thead>
@@ -368,14 +369,14 @@
 
 <tbody>
 <tr>
-<td><a href="https://github.com/martian-lang/martian/releases/download/v2.3.0-rc1/martian-v2.3.0-rc1-linux-x86_64.tar.gz">martian-v2.3.0-rc1-linux-x86_64.tar.gz</a></td>
+<td><a href="https://github.com/martian-lang/martian/releases/download/v2.3.0/martian-v2.3.0-linux-x86_64.tar.gz">martian-v2.3.0-linux-x86_64.tar.gz</a></td>
 <td>Linux</td>
 <td>x86-64</td>
-<td><span style="font-size: 8px">2d81806d4ccaef15b5513fd096c1ae6aafc387bf480f299d1aaa0819b0327572</span></td>
+<td><span style="font-size: 8px">657eb6018a9371ac6af7267191945fd5ca590963d93d5d8096078f37d92b1107</span></td>
 </tr>
 
 <tr>
-<td>Coming soon</td>
+<td><a href="https://github.com/martian-lang/martian/blob/master/.github/CONTRIBUTING.md">Coming soon</a></td>
 <td>macOS</td>
 <td>x86-64</td>
 <td></td>
@@ -390,12 +391,26 @@
 </tbody>
 </table>
 
+<h3 id="system-requirements">System Requirements</h3>
+
+<ul>
+<li>Currently, running pipelines requires a Linux system with kernel version 2.6.23 or later.
+
+<ul>
+<li>Linux versions as far back as RHEL/CentOS 5.5 or Ubuntu 10 have been confirmed working.</li>
+<li>Future updates may drop support for anything older than RHEL/CentOS 6 or Ubuntu 12.</li>
+<li>For the time being, <code>mrp</code> only functions on Linux.</li>
+<li>Ancillary tools such as <code>mrc</code>, <code>mrstat</code>, and <code>mrf</code> are expected to work on MacOS.</li>
+</ul></li>
+<li>Martian was designed for large bioinformatics pipelines.  One may run into issues on systems with less than 6GB of available memory.  Editing <code>jobmanagers/config.json</code> to reduce the default memory request for jobs may alleviate some of those issues.</li>
+</ul>
+
 <h2 id="building-from-source">Building from Source</h2>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
 <ul>
-<li><a href="https://golang.org">Go</a> 1.8 or higher is required to build Martian.</li>
+<li><a href="https://golang.org">Go</a> 1.9 or higher is required to build Martian.</li>
 <li>The Python adapter for wrapping stage code requires Python 2.7.</li>
 <li>To build the user interface, <a href="https://nodejs.org">Node</a> 6 or higher is required, along with NPM.</li>
 </ul>

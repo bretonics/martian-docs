@@ -27,8 +27,8 @@
       <pubDate>Tue, 01 Nov 2016 17:53:15 -0700</pubDate>
       
       <guid>http://martian-lang.org/getting-started/</guid>
-      <description>Installing Martian Official binary distributions of the Martian toolchain are available for Linux, macOS and Windows:
-   Download OS Arch SHA256     martian-v2.3.0-rc1-linux-x86_64.tar.gz Linux x86-64 2d81806d4ccaef15b5513fd096c1ae6aafc387bf480f299d1aaa0819b0327572   Coming soon macOS x86-64    Please contribute! Windows x86-64     Building from Source Prerequisites  Go 1.8 or higher is required to build Martian. The Python adapter for wrapping stage code requires Python 2.</description>
+      <description>Installing Martian Official binary distributions of the Martian toolchain are available for Linux. We hope to have MacOS and Windows support soon.
+   Download OS Arch SHA256     martian-v2.3.0-linux-x86_64.tar.gz Linux x86-64 657eb6018a9371ac6af7267191945fd5ca590963d93d5d8096078f37d92b1107   Coming soon macOS x86-64    Please contribute! Windows x86-64     System Requirements  Currently, running pipelines requires a Linux system with kernel version 2.6.23 or later.</description>
     </item>
     
     <item>
