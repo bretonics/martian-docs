@@ -13,11 +13,11 @@
     <meta name="generator" content="Hugo 0.30.2" />
 
     
-    <meta name="description" content="A material design theme for documentations.">
+    <meta name="description" content="Martian is a language and framework for developing and executing complex computational pipelines.">
     
     <link rel="canonical" href="http://martian-lang.org/roadmap/">
     
-    <meta name="author" content="Digitalcraftsman">
+    <meta name="author" content="Martian authors">
     
 
     <meta property="og:url" content="http://martian-lang.org/roadmap/">
@@ -317,6 +317,27 @@
 
 
 
+<a class="current" title="Development Roadmap" href="http://martian-lang.org/roadmap/">
+	
+	Development Roadmap
+</a>
+
+
+<ul id="scrollspy">
+</ul>
+
+
+  
+</li>
+
+
+
+<li>
+  
+    
+
+
+
 <a  title="About" href="http://martian-lang.org/about/">
 	
 	About
@@ -364,25 +385,36 @@ and are subject to change at any time.</p>
 <h2 id="q3-2017-2-3-0">Q3 2017 - 2.3.0</h2>
 
 <ul>
-<li>Support building on macOS, and running non-pipeline tools.</li>
 <li>Always-on UI port with basic (unencrypted) authentication and a basic command
 line tool for remote administration.</li>
 <li>Support for <code>perf record</code> profiling.</li>
 <li>Some tracking of stage vmem usage.</li>
 <li>Improved local-mode memory management.</li>
 <li>Redesigned adapter API.</li>
-</ul>
-
-<h2 id="q4-2017-2-4-0">Q4 2017 - 2.4.0</h2>
-
-<ul>
 <li>Improved resiliency to accidentally resetting stages which are still running.</li>
 <li>More options for remote administration over the UI port.</li>
-<li>(stretch) Improved web interface.</li>
+<li>Support building on macOS, and running non-pipeline tools.</li>
+</ul>
+
+<h2 id="q4-2017-3-0-0">Q4 2017 - 3.0.0</h2>
+
+<ul>
+<li>Stronger enforcement of stage and pipeline input and output types.</li>
+<li>Declare chunk outputs which are not stage outputs.</li>
+<li>Override default thread or memory requests from stage MRO.</li>
+<li>Conditionally disable sub-pipelines (e.g. to support autodetection of which analyses to run).</li>
+</ul>
+
+<h2 id="2018">2018</h2>
+
+<ul>
+<li>Management tool for launching and running many pipelines concurrently.</li>
 </ul>
 
 
 			<aside class="copyright" role="note">
+				
+				&copy; 2017 10X Genomics 
 				
 				
 			</aside>
